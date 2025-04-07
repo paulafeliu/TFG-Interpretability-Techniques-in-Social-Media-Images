@@ -1,0 +1,188 @@
+El DataFrame tiene 308 filas.
+El DataFrame tiene 538 filas.
+\El DataFrame de agreed tiene 842 filas.
+
+Etiquetas únicas en nature_visual:
+['No' 'Yes']
+------
+nature_visual
+No     572
+Yes    270
+Name: count, dtype: int64
+Etiquetas únicas en nep_materiality_visual:
+[nan 'material' 'immaterial']
+------
+nep_materiality_visual
+material      159
+immaterial    111
+Name: count, dtype: int64
+Etiquetas únicas en nep_biological_visual:
+[nan 'biotic' 'abiotic']
+------
+nep_biological_visual
+biotic     227
+abiotic     43
+Name: count, dtype: int64
+Etiquetas únicas en landscape-type_visual:
+[nan 'artificial_surfaces' 'forest_and_seminatural_areas' 'water_bodies'
+ 'other' 'none' 'wetlands' 'agricultural_areas']
+------
+landscape-type_visual
+none                            209
+artificial_surfaces              64
+forest_and_seminatural_areas     19
+water_bodies                      6
+other                             3
+wetlands                          1
+agricultural_areas                1
+Name: count, dtype: int64
+
+Total de imágenes: 842
+Total de batches: 27 
+
+Epoch 1/10, Loss: 4.1430
+Epoch 2/10, Loss: 2.6847
+Epoch 3/10, Loss: 2.1534
+Epoch 4/10, Loss: 1.8727
+Epoch 5/10, Loss: 1.7109
+Epoch 6/10, Loss: 1.4691
+Epoch 7/10, Loss: 1.3421
+Epoch 8/10, Loss: 1.2109
+Epoch 9/10, Loss: 1.0269
+Epoch 10/10, Loss: 0.9956
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1479936952363372545_3_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1559209297833254913_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1582915504167014400_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1708407402062635095_1_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1676230379525611522_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1608735639557791744_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1681968187087155204_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1643178592476561411_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1634707776369827843_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1623081165644091395_1_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1617494352808353792_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1490733090666434561_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1605413750814789632_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1492847019878191104_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1544260798322802688_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1623685145604620288_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1729682589626012041_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1631838872475713537_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1577026701044817920_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1739799250790236510_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1569099466795356160_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1535654086648946688_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1506512062431825926_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1479634962206711809_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1705991483021464019_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1628381088442896384_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1608131659777605633_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1675173414942670848_0_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1515722753923592197_1_gradcam.png
+
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/data/output/grad_cam/1488090679314026500_0_gradcam.png
+
+Test Loss: 2.8489
+
+Accuracy por tarea:
+  Nature: 83.53%
+  Materiality: 76.47%
+  Biological: 76.47%
+  Landscape: 62.35%
+
+Confusion Matrix - Nature:
+[[55  5]
+ [ 9 16]]
+Classification Report - Nature:
+              precision    recall  f1-score   support
+
+           0       0.86      0.92      0.89        60
+           1       0.76      0.64      0.70        25
+
+    accuracy                           0.84        85
+   macro avg       0.81      0.78      0.79        85
+weighted avg       0.83      0.84      0.83        85
+
+
+Confusion Matrix - Materiality:
+[[ 7  3  5]
+ [ 3  2  5]
+ [ 0  4 56]]
+Classification Report - Materiality:
+              precision    recall  f1-score   support
+
+           0       0.70      0.47      0.56        15
+           1       0.22      0.20      0.21        10
+           2       0.85      0.93      0.89        60
+
+    accuracy                           0.76        85
+   macro avg       0.59      0.53      0.55        85
+weighted avg       0.75      0.76      0.75        85
+
+
+Confusion Matrix - Biological:
+[[10  1  7]
+ [ 4  1  2]
+ [ 6  0 54]]
+Classification Report - Biological:
+              precision    recall  f1-score   support
+
+           0       0.50      0.56      0.53        18
+           1       0.50      0.14      0.22         7
+           2       0.86      0.90      0.88        60
+
+    accuracy                           0.76        85
+   macro avg       0.62      0.53      0.54        85
+weighted avg       0.75      0.76      0.75        85
+
+
+Confusion Matrix - Landscape:
+[[ 0  0  0  0  1  1]
+ [ 1  1  0  0  1  0]
+ [ 0  0  0  0  0  1]
+ [ 1  0  0  0  0  0]
+ [ 0  0  0  0  5 15]
+ [ 0  0  0  0 11 47]]
+Classification Report - Landscape:
+              precision    recall  f1-score   support
+
+           0       0.00      0.00      0.00         2
+           1       1.00      0.33      0.50         3
+           3       0.00      0.00      0.00         1
+           4       0.00      0.00      0.00         1
+           6       0.28      0.25      0.26        20
+           7       0.73      0.81      0.77        58
+
+    accuracy                           0.62        85
+   macro avg       0.34      0.23      0.26        85
+weighted avg       0.60      0.62      0.61        85
+

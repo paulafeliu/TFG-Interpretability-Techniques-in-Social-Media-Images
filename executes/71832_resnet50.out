@@ -1,0 +1,121 @@
+El DataFrame tiene 308 filas.
+El DataFrame tiene 538 filas.
+El DataFrame de agreed tiene 842 filas.
+Etiquetas únicas en nature_visual:
+['No' 'Yes']
+------
+nature_visual
+No     572
+Yes    270
+Name: count, dtype: int64
+Etiquetas únicas en nep_materiality_visual:
+[nan 'material' 'immaterial']
+------
+nep_materiality_visual
+material      159
+immaterial    111
+Name: count, dtype: int64
+Etiquetas únicas en nep_biological_visual:
+[nan 'biotic' 'abiotic']
+------
+nep_biological_visual
+biotic     227
+abiotic     43
+Name: count, dtype: int64
+Etiquetas únicas en landscape-type_visual:
+[nan 'artificial_surfaces' 'forest_and_seminatural_areas' 'water_bodies'
+ 'other' 'none' 'wetlands' 'agricultural_areas']
+------
+landscape-type_visual
+none                            209
+artificial_surfaces              64
+forest_and_seminatural_areas     19
+water_bodies                      6
+other                             3
+wetlands                          1
+agricultural_areas                1
+Name: count, dtype: int64
+Total de imágenes: 842
+Total de batches: 27
+Epoch 1/10, Loss: 3.6887
+Epoch 2/10, Loss: 2.3651
+Epoch 3/10, Loss: 1.8921
+Epoch 4/10, Loss: 1.5523
+Epoch 5/10, Loss: 1.3088
+Epoch 6/10, Loss: 1.2177
+Epoch 7/10, Loss: 1.0795
+Epoch 8/10, Loss: 1.0937
+Epoch 9/10, Loss: 0.9227
+Epoch 10/10, Loss: 0.7275
+Test Loss: 3.8288
+Accuracy por tarea:
+  Nature: 75.29%
+  Materiality: 72.94%
+  Biological: 69.41%
+  Landscape: 67.06%
+
+Confusion Matrix - Nature:
+[[48 10]
+ [11 16]]
+Classification Report - Nature:
+              precision    recall  f1-score   support
+
+           0       0.81      0.83      0.82        58
+           1       0.62      0.59      0.60        27
+
+    accuracy                           0.75        85
+   macro avg       0.71      0.71      0.71        85
+weighted avg       0.75      0.75      0.75        85
+
+
+Confusion Matrix - Materiality:
+[[ 9  2  6]
+ [ 0  5  5]
+ [ 7  3 48]]
+Classification Report - Materiality:
+              precision    recall  f1-score   support
+
+           0       0.56      0.53      0.55        17
+           1       0.50      0.50      0.50        10
+           2       0.81      0.83      0.82        58
+
+    accuracy                           0.73        85
+   macro avg       0.63      0.62      0.62        85
+weighted avg       0.73      0.73      0.73        85
+
+
+Confusion Matrix - Biological:
+[[11  0  7]
+ [ 3  0  6]
+ [10  0 48]]
+Classification Report - Biological:
+              precision    recall  f1-score   support
+
+           0       0.46      0.61      0.52        18
+           1       0.00      0.00      0.00         9
+           2       0.79      0.83      0.81        58
+
+    accuracy                           0.69        85
+   macro avg       0.42      0.48      0.44        85
+weighted avg       0.63      0.69      0.66        85
+
+
+Confusion Matrix - Landscape:
+[[ 1  1  0  0  3]
+ [ 0  0  0  0  2]
+ [ 1  0  0  0  2]
+ [ 0  0  0  7 11]
+ [ 2  0  0  6 49]]
+Classification Report - Landscape:
+              precision    recall  f1-score   support
+
+           0       0.25      0.20      0.22         5
+           1       0.00      0.00      0.00         2
+           3       0.00      0.00      0.00         3
+           6       0.54      0.39      0.45        18
+           7       0.73      0.86      0.79        57
+
+    accuracy                           0.67        85
+   macro avg       0.30      0.29      0.29        85
+weighted avg       0.62      0.67      0.64        85
+
