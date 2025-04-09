@@ -1,0 +1,154 @@
+El DataFrame tiene 308 filas.
+El DataFrame tiene 538 filas.
+El DataFrame de agreed tiene 842 filas.
+
+Etiquetas únicas en nature_visual:
+['No' 'Yes']
+------
+nature_visual
+No     572
+Yes    270
+Name: count, dtype: int64
+Etiquetas únicas en nep_materiality_visual:
+[nan 'material' 'immaterial']
+------
+nep_materiality_visual
+material      159
+immaterial    111
+Name: count, dtype: int64
+Etiquetas únicas en nep_biological_visual:
+[nan 'biotic' 'abiotic']
+------
+nep_biological_visual
+biotic     227
+abiotic     43
+Name: count, dtype: int64
+Etiquetas únicas en landscape-type_visual:
+[nan 'artificial_surfaces' 'forest_and_seminatural_areas' 'water_bodies'
+ 'other' 'none' 'wetlands' 'agricultural_areas']
+------
+landscape-type_visual
+none                            209
+artificial_surfaces              64
+forest_and_seminatural_areas     19
+water_bodies                      6
+other                             3
+wetlands                          1
+agricultural_areas                1
+Name: count, dtype: int64
+
+Total de imágenes: 842
+Epoch 1/10, Loss: 4.2106
+Epoch 2/10, Loss: 2.7541
+Epoch 3/10, Loss: 2.2038
+Epoch 4/10, Loss: 1.9139
+Epoch 5/10, Loss: 1.6403
+Epoch 6/10, Loss: 1.5057
+Epoch 7/10, Loss: 1.3957
+Epoch 8/10, Loss: 1.2319
+Epoch 9/10, Loss: 1.0396
+Epoch 10/10, Loss: 0.9663
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1640143594471211008_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1509682956310253583_2_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1626448353008697345_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1563135166377500676_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1599373952652300289_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1628381088442896384_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1482201876456427525_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1506512062431825926_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1590012266459856896_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1504398133136084994_1_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1561700714438696960_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1484768790487437315_1_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1490808588201308161_1_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1595297089558220801_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1682753361064480770_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1516553226283192322_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1492167542760169472_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1577026701044817920_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1641366653249232896_2_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1718524063164092435_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1477672028190785546_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1620967236528930817_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1587143362573963270_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1568117999479017472_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1675505603727302658_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1611907540031524866_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1515269769167269891_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1558605317952352256_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1618400322640306176_0_gradcam.png
+GradCAM output saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/grad_cam/1687147313935118336_0_gradcam.png
+
+Test Loss: 3.1685
+Accuracy for nature_visual: 75.29%
+
+Confusion Matrix - nature_visual:
+[[52 10]
+ [11 12]]
+
+Classification Report - nature_visual:
+              precision    recall  f1-score   support
+
+           0       0.83      0.84      0.83        62
+           1       0.55      0.52      0.53        23
+
+    accuracy                           0.75        85
+   macro avg       0.69      0.68      0.68        85
+weighted avg       0.75      0.75      0.75        85
+
+Accuracy for nep_materiality_visual: 80.00%
+
+Confusion Matrix - nep_materiality_visual:
+[[ 9  1  4]
+ [ 2  1  6]
+ [ 3  1 58]]
+
+Classification Report - nep_materiality_visual:
+              precision    recall  f1-score   support
+
+           0       0.64      0.64      0.64        14
+           1       0.33      0.11      0.17         9
+           2       0.85      0.94      0.89        62
+
+    accuracy                           0.80        85
+   macro avg       0.61      0.56      0.57        85
+weighted avg       0.76      0.80      0.77        85
+
+Accuracy for nep_biological_visual: 74.12%
+
+Confusion Matrix - nep_biological_visual:
+[[ 8  2 10]
+ [ 1  0  2]
+ [ 5  2 55]]
+
+Classification Report - nep_biological_visual:
+              precision    recall  f1-score   support
+
+           0       0.57      0.40      0.47        20
+           1       0.00      0.00      0.00         3
+           2       0.82      0.89      0.85        62
+
+    accuracy                           0.74        85
+   macro avg       0.46      0.43      0.44        85
+weighted avg       0.73      0.74      0.73        85
+
+Accuracy for landscape-type_visual: 57.65%
+
+Confusion Matrix - landscape-type_visual:
+[[ 1  0  1  3]
+ [ 1  0  0  3]
+ [ 1  0  5 19]
+ [ 0  0  8 43]]
+
+Classification Report - landscape-type_visual:
+              precision    recall  f1-score   support
+
+           0       0.33      0.20      0.25         5
+           1       0.00      0.00      0.00         4
+           6       0.36      0.20      0.26        25
+           7       0.63      0.84      0.72        51
+
+    accuracy                           0.58        85
+   macro avg       0.33      0.31      0.31        85
+weighted avg       0.50      0.58      0.52        85
+
