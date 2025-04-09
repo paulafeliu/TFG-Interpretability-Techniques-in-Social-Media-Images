@@ -1,0 +1,57 @@
+The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet18_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet18_Weights.DEFAULT` to get the most up-to-date weights.
+Palette images with Transparency expressed in bytes should be converted to RGBA images
+Traceback (most recent call last):
+  File "/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/main.py", line 323, in <module>
+    main()
+  File "/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/main.py", line 313, in main
+    run_shap(model, test_dataset, device, target_tasks=[0, 1, 2, 3])
+  File "/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/main.py", line 185, in run_shap
+    shap_explainer.explain(input_tensor, target_task=task, save_path=save_path)
+  File "/export/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/interpretability/shap.py", line 44, in explain
+    shap_values = self.explainer.shap_values(input_tensor)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/shap/explainers/_deep/__init__.py", line 125, in shap_values
+    return self.explainer.shap_values(X, ranked_outputs, output_rank_order, check_additivity=check_additivity)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/shap/explainers/_deep/deep_pytorch.py", line 191, in shap_values
+    sample_phis = self.gradient(feature_ind, joint_x)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/shap/explainers/_deep/deep_pytorch.py", line 107, in gradient
+    outputs = self.model(*X)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/export/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/models/wrappers.py", line 14, in forward
+    outputs = self.model(x)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/export/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/models/multitask_model.py", line 19, in forward
+    features = self.backbone(x)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/export/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/models/backbone.py", line 33, in forward
+    x = self.backbone(x)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torchvision/models/resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torchvision/models/resnet.py", line 273, in _forward_impl
+    x = self.layer1(x)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torch/nn/modules/container.py", line 219, in forward
+    input = module(input)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/torchvision/models/resnet.py", line 102, in forward
+    out += identity
+RuntimeError: Output 0 of BackwardHookFunctionBackward is a view and is being modified inplace. This view was created inside a custom Function (or because an input was returned as-is) and the autograd logic to handle view+inplace would override the custom backward associated with the custom Function, leading to incorrect gradients. This behavior is forbidden. You can fix this by cloning the output of the custom Function.

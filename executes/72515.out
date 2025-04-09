@@ -1,0 +1,57 @@
+El DataFrame tiene 308 filas.
+El DataFrame tiene 538 filas.
+El DataFrame de agreed tiene 842 filas.
+
+Etiquetas únicas en nature_visual:
+['No' 'Yes']
+------
+nature_visual
+No     572
+Yes    270
+Name: count, dtype: int64
+Etiquetas únicas en nep_materiality_visual:
+[nan 'material' 'immaterial']
+------
+nep_materiality_visual
+material      159
+immaterial    111
+Name: count, dtype: int64
+Etiquetas únicas en nep_biological_visual:
+[nan 'biotic' 'abiotic']
+------
+nep_biological_visual
+biotic     227
+abiotic     43
+Name: count, dtype: int64
+Etiquetas únicas en landscape-type_visual:
+[nan 'artificial_surfaces' 'forest_and_seminatural_areas' 'water_bodies'
+ 'other' 'none' 'wetlands' 'agricultural_areas']
+------
+landscape-type_visual
+none                            209
+artificial_surfaces              64
+forest_and_seminatural_areas     19
+water_bodies                      6
+other                             3
+wetlands                          1
+agricultural_areas                1
+Name: count, dtype: int64
+
+Total de imágenes: 842
+Epoch 1/10, Loss: 4.3767
+Epoch 2/10, Loss: 2.6992
+Epoch 3/10, Loss: 2.2553
+Epoch 4/10, Loss: 2.0176
+Epoch 5/10, Loss: 1.7736
+Epoch 6/10, Loss: 1.5068
+Epoch 7/10, Loss: 1.3282
+Epoch 8/10, Loss: 1.2124
+Epoch 9/10, Loss: 1.1288
+Epoch 10/10, Loss: 1.0593
+
+grad cam ejecutado
+
+shap: Background shape: torch.Size([15, 3, 224, 224])
+Processing SHAP for image 1/15
+Processing SHAP for task 0 on image 1640143594471211008_0
+SHAPExplainer initialized for task 0
