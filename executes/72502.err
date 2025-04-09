@@ -1,0 +1,18 @@
+The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet18_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet18_Weights.DEFAULT` to get the most up-to-date weights.
+Palette images with Transparency expressed in bytes should be converted to RGBA images
+Using a non-full backward hook when the forward contains multiple autograd Nodes is deprecated and will be removed in future versions. This hook will be missing some grad_input. Please use register_full_backward_hook to get the documented behavior.
+Traceback (most recent call last):
+  File "/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/main.py", line 302, in <module>
+    main()
+  File "/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/main.py", line 294, in main
+    run_shap(model, test_dataset, device)
+  File "/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/main.py", line 169, in run_shap
+    shap_explainer = SHAPExplainer(model, background, device)
+  File "/export/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/interpretability/shap.py", line 23, in __init__
+    self.explainer = shap.DeepExplainer(self.model, self.background_data)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/shap/explainers/_deep/__init__.py", line 86, in __init__
+    self.explainer = PyTorchDeep(model, data)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/shap/explainers/_deep/deep_pytorch.py", line 61, in __init__
+    self.device = outputs.device
+AttributeError: 'tuple' object has no attribute 'device'
