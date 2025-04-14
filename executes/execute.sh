@@ -14,4 +14,4 @@
 source /fhome/pfeliu/env_tfg/bin/activate
 
 #python3 /fhome/pfeliu/tfg_feliu/code/twitter_analysis.py
-python3 /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/main.py
+CUDA_LAUNCH_BLOCKING=1 python3 /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/main.py

@@ -1,0 +1,20 @@
+The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet18_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet18_Weights.DEFAULT` to get the most up-to-date weights.
+Palette images with Transparency expressed in bytes should be converted to RGBA images
+unrecognized nn.Module: Identity
+Traceback (most recent call last):
+  File "/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/main.py", line 368, in <module>
+    main()
+  File "/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/main.py", line 358, in main
+    run_shap(model, test_dataset, device)
+  File "/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/main.py", line 186, in run_shap
+    explanation = shap_explainer.explain(input_tensor, target_task=0)
+  File "/export/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/interpretability/shap.py", line 34, in explain
+    shap_values = self.explainer.shap_values(input_tensor)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/shap/explainers/_deep/__init__.py", line 125, in shap_values
+    return self.explainer.shap_values(X, ranked_outputs, output_rank_order, check_additivity=check_additivity)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/shap/explainers/_deep/deep_pytorch.py", line 219, in shap_values
+    _check_additivity(self, model_output_values.cpu(), output_phis)
+  File "/export/fhome/pfeliu/env_tfg/lib/python3.8/site-packages/shap/explainers/_deep/deep_utils.py", line 20, in _check_additivity
+    assert maxdiff < TOLERANCE, "The SHAP explanations do not sum up to the model's output! This is either because of a " \
+AssertionError: The SHAP explanations do not sum up to the model's output! This is either because of a rounding error or because an operator in your computation graph was not fully supported. If the sum difference of %f is significant compared to the scale of your model outputs, please post as a github issue, with a reproducible example so we can debug it. Used framework: pytorch - Max. diff: 6.733929467144579 - Tolerance: 0.01
