@@ -16,6 +16,7 @@ from torch.utils.data import DataLoader, random_split
 from sklearn.metrics import confusion_matrix, classification_report
 import torchvision.transforms as transforms
 import shap
+from PIL import Image
 
 # Import custom modules
 from data_processing.csv_process import process_csv
@@ -27,15 +28,18 @@ from interpretability.lime import LIMEExplainer
 from interpretability.shap import SHAPExplainer
 from models.wrappers import SingleOutputWrapper
 from utils.visualization import imshow_tensor
+from data_processing.unlabeled_dataset import UnlabeledImageDataset
 
 # Configuration and paths
 CSV_PATH1 = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data/39_20250401_0816.csv'
 CSV_PATH2 = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data/43_3.csv'
-IMG_DIR = 'tfg_feliu/data/twitter'
-OUTPUT_DIR = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output'
-AGREED_DF_PATH = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data/X_labels_agreements_0204.csv'
-MODEL_CHOICE = 'ResNet18'  # Options: ResNet18, EfficientNetB0, DenseNet121, ResNet50
+IMG_DIR = '/fhome/pfeliu/tfg_feliu/data/twitter'
 SPANISH_DIR = '/fhome/pfeliu/tfg_feliu/data/spanish_dataset'
+OUTPUT_DIR = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output'
+AGREED_DF_PATH = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data/X_labels_agreements_1404.csv'
+MODEL_CHOICE = 'ResNet18'  # Options: ResNet18, EfficientNetB0, DenseNet121, ResNet50
+MODEL_PATH = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/models'
+
 
 def prepare_data():
     df1 = process_csv(CSV_PATH1, IMG_DIR)
@@ -393,6 +397,30 @@ def patch_resnet_inplace(model):
                 module.forward = types.MethodType(new_forward, module)
                 module.patched_for_shap = True
 
+def predict_unlabeled(model, unlabeled_dir, transform, device):
+    """
+    Carga las imágenes no etiquetadas de un directorio, obtiene las predicciones del modelo y las retorna en un diccionario.
+    """
+    dataset = UnlabeledImageDataset(unlabeled_dir, transform)
+    loader = DataLoader(dataset, batch_size=32, shuffle=False)
+    model.eval()
+    predictions = {}
+    with torch.no_grad():
+        for images, image_names in loader:
+            images = images.to(device)
+            out_nature, out_materiality, out_biological, out_landscape = model(images)
+            preds_nature = out_nature.argmax(dim=1).cpu().numpy()
+            preds_materiality = out_materiality.argmax(dim=1).cpu().numpy()
+            preds_biological = out_biological.argmax(dim=1).cpu().numpy()
+            preds_landscape = out_landscape.argmax(dim=1).cpu().numpy()
+            for i, img_name in enumerate(image_names):
+                predictions[img_name] = {
+                    "nature_visual": int(preds_nature[i]),
+                    "nep_materiality_visual": int(preds_materiality[i]),
+                    "nep_biological_visual": int(preds_biological[i]),
+                    "landscape-type_visual": int(preds_landscape[i]),
+                }
+    return predictions
 
 def main():
     # Create output directories
@@ -436,20 +464,28 @@ def main():
     patch_resnet_inplace(model)
 
     # Step 3: Training
-    train_model(model, train_loader, device, num_epochs=5)
+    train_model(model, train_loader, device, num_epochs=50)
 
-    # GradCAM Visualization on a few test samples.
-    #run_gradcam(model, test_dataset, device)
-    #print("\ngrad cam ejecutado")
-    # SHAP explanation.
-    #run_shap(model, test_dataset, device)
-    #print("\nshap ejecutado")
-    # LIME explanation.
-    #run_lime(model, test_dataset, device)
-    #print("\nlime ejecutado")
+    trained_model_path = os.path.join(OUTPUT_DIR, "trained_model_test.pth")
+    torch.save(model.state_dict(), trained_model_path)
+    print(f"\nModelo guardado en: {trained_model_path}")
 
     # Step 5: Evaluation on Test Set.
-    evaluate_model(model, test_loader, device)
+    #evaluate_model(model, test_loader, device)
+    model.load_state_dict(torch.load(trained_model_path, map_location=device))
+    model.eval()
+    print(f"Modelo cargado desde: {trained_model_path}")
+
+    predictions = predict_unlabeled(model, SPANISH_DIR, transform, device)
+    '''print("\nPredicciones en imágenes no etiquetadas:")
+    for img_name, preds in predictions.items():
+        print(f"{img_name}: {preds}")
+    '''
+    # (Opcional) Guardar las predicciones en un CSV
+    pred_df = pd.DataFrame.from_dict(predictions, orient='index')
+    csv_pred_path = os.path.join(OUTPUT_DIR, "preds_spanish_dataset.csv")
+    pred_df.to_csv(csv_pred_path)
+    print(f"\nPredicciones guardadas en: {csv_pred_path}")
 
 if __name__ == '__main__':
     main()
