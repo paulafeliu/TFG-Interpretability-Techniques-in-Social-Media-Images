@@ -1,3 +1,9 @@
+"""
+unlabeled_dataset.py
+----------
+Defines the UnlabeledImageDataset class.
+"""
+
 import torch
 import os
 from PIL import Image

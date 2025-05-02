@@ -17,6 +17,7 @@ from sklearn.metrics import confusion_matrix, classification_report
 import torchvision.transforms as transforms
 import shap
 from PIL import Image
+import torch.nn.functional as F
 
 # Import custom modules
 from data_processing.csv_process import process_csv
@@ -31,12 +32,12 @@ from utils.visualization import imshow_tensor
 from data_processing.unlabeled_dataset import UnlabeledImageDataset
 
 # Configuration and paths
-CSV_PATH1 = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data/39_20250401_0816.csv'
-CSV_PATH2 = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data/43_3.csv'
+CSV_PATH1 = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/39_20250401_0816.csv'
+CSV_PATH2 = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/43_3.csv'
 IMG_DIR = '/fhome/pfeliu/tfg_feliu/data/twitter'
 SPANISH_DIR = '/fhome/pfeliu/tfg_feliu/data/spanish_dataset'
 OUTPUT_DIR = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output'
-AGREED_DF_PATH = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data/X_labels_agreements_1404.csv'
+AGREED_DF_PATH = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/X_labels_agreements_1404.csv'
 MODEL_CHOICE = 'ResNet18'  # Options: ResNet18, EfficientNetB0, DenseNet121, ResNet50
 MODEL_PATH = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/models'
 
@@ -409,16 +410,38 @@ def predict_unlabeled(model, unlabeled_dir, transform, device):
         for images, image_names in loader:
             images = images.to(device)
             out_nature, out_materiality, out_biological, out_landscape = model(images)
+            
+            # Convert logits to probabilities using softmax.
+            probs_nature = F.softmax(out_nature, dim=1)
+            probs_materiality = F.softmax(out_materiality, dim=1)
+            probs_biological = F.softmax(out_biological, dim=1)
+            probs_landscape = F.softmax(out_landscape, dim=1)
+            
+            # Get predicted labels via argmax.
             preds_nature = out_nature.argmax(dim=1).cpu().numpy()
             preds_materiality = out_materiality.argmax(dim=1).cpu().numpy()
             preds_biological = out_biological.argmax(dim=1).cpu().numpy()
             preds_landscape = out_landscape.argmax(dim=1).cpu().numpy()
+            
+            # Iterate over the batch and store predictions and confidence scores.
             for i, img_name in enumerate(image_names):
                 predictions[img_name] = {
-                    "nature_visual": int(preds_nature[i]),
-                    "nep_materiality_visual": int(preds_materiality[i]),
-                    "nep_biological_visual": int(preds_biological[i]),
-                    "landscape-type_visual": int(preds_landscape[i]),
+                    "nature_visual": {
+                        "predicted_label": int(preds_nature[i]),
+                        "scores": probs_nature[i].cpu().numpy().tolist()
+                    },
+                    "nep_materiality_visual": {
+                        "predicted_label": int(preds_materiality[i]),
+                        "scores": probs_materiality[i].cpu().numpy().tolist()
+                    },
+                    "nep_biological_visual": {
+                        "predicted_label": int(preds_biological[i]),
+                        "scores": probs_biological[i].cpu().numpy().tolist()
+                    },
+                    "landscape-type_visual": {
+                        "predicted_label": int(preds_landscape[i]),
+                        "scores": probs_landscape[i].cpu().numpy().tolist()
+                    }
                 }
     return predictions
 
@@ -464,11 +487,11 @@ def main():
     patch_resnet_inplace(model)
 
     # Step 3: Training
-    train_model(model, train_loader, device, num_epochs=50)
+    #train_model(model, train_loader, device, num_epochs=50)
 
     trained_model_path = os.path.join(OUTPUT_DIR, "trained_model_test.pth")
-    torch.save(model.state_dict(), trained_model_path)
-    print(f"\nModelo guardado en: {trained_model_path}")
+    #torch.save(model.state_dict(), trained_model_path)
+    #print(f"\nModelo guardado en: {trained_model_path}")
 
     # Step 5: Evaluation on Test Set.
     #evaluate_model(model, test_loader, device)
@@ -483,7 +506,7 @@ def main():
     '''
     # (Opcional) Guardar las predicciones en un CSV
     pred_df = pd.DataFrame.from_dict(predictions, orient='index')
-    csv_pred_path = os.path.join(OUTPUT_DIR, "preds_spanish_dataset.csv")
+    csv_pred_path = os.path.join(OUTPUT_DIR, "preds_spanish_df_scores.csv")
     pred_df.to_csv(csv_pred_path)
     print(f"\nPredicciones guardadas en: {csv_pred_path}")
 

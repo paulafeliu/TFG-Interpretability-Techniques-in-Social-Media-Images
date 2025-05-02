@@ -52,3 +52,30 @@ class GradCAM:
         cam_max = cam.max()
         cam = (cam - cam_min) / (cam_max - cam_min + 1e-8)
         return cam.cpu().squeeze().numpy()
+
+
+
+def run_gradcam(model, test_dataset, device):
+    gradcam_output_dir = os.path.join(OUTPUT_DIR, "grad_cam")
+    os.makedirs(gradcam_output_dir, exist_ok=True)
+
+    for img_idx in range(15):
+        sample_image, sample_image_name, sample_labels = test_dataset[img_idx]
+        input_tensor = sample_image.unsqueeze(0).to(device)
+        # Assuming the target layer (for ResNet-based backbones) is layer4
+        target_layer = model.backbone.backbone.layer4
+        gradcam = GradCAM(model, target_layer)
+        cam = gradcam.generate_cam(input_tensor)
+        cam_resized = cv2.resize(cam, (224, 224))
+        
+        original_img = denormalize_image(sample_image)
+        
+        plt.imshow(original_img)
+        plt.imshow(cam_resized, cmap='jet', alpha=0.5)
+        plt.title("GradCAM - Nature Visual")
+        plt.axis('off')
+
+        gradcam_path = os.path.join(OUTPUT_DIR, "grad_cam", f"{sample_image_name}_gradcam.png")
+        plt.savefig(gradcam_path, bbox_inches='tight')
+        plt.close()
+        print(f"GradCAM output saved to {gradcam_path}")

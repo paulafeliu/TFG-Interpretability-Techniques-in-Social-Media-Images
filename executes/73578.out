@@ -1,0 +1,43 @@
+El DataFrame tiene 308 filas.
+El DataFrame tiene 1143 filas.
+El DataFrame de agreed tiene 1444 filas.
+
+Etiquetas únicas en nature_visual:
+['No' 'Yes']
+------
+nature_visual
+No     941
+Yes    503
+Name: count, dtype: int64
+Etiquetas únicas en nep_materiality_visual:
+[nan 'material' 'immaterial']
+------
+nep_materiality_visual
+material      279
+immaterial    225
+Name: count, dtype: int64
+Etiquetas únicas en nep_biological_visual:
+[nan 'biotic' 'abiotic']
+------
+nep_biological_visual
+biotic     416
+abiotic     87
+Name: count, dtype: int64
+Etiquetas únicas en landscape-type_visual:
+[nan 'artificial_surfaces' 'forest_and_seminatural_areas' 'water_bodies'
+ 'other' 'none' 'agricultural_areas' 'wetlands']
+------
+landscape-type_visual
+none                            279
+artificial_surfaces             115
+forest_and_seminatural_areas     46
+water_bodies                     16
+agricultural_areas                7
+other                             4
+wetlands                          1
+Name: count, dtype: int64
+
+Total de imágenes: 1444
+Modelo cargado desde: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/trained_model_test.pth
+
+Predicciones guardadas en: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/preds_spanish_df_scores.csv

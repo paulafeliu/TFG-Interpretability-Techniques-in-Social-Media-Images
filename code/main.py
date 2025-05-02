@@ -16,6 +16,9 @@ from torch.utils.data import DataLoader, random_split
 from sklearn.metrics import confusion_matrix, classification_report
 import torchvision.transforms as transforms
 import shap
+import types
+import torchvision.models.resnet as resnet
+
 
 # Import custom modules
 from data_processing.csv_process import process_csv
@@ -27,15 +30,24 @@ from interpretability.lime import LIMEExplainer
 from interpretability.shap import SHAPExplainer
 from models.wrappers import SingleOutputWrapper
 from utils.visualization import imshow_tensor
+#from gradcam_backprop import GradCAM, GuidedBackprop
+from utils.denormalize_image import denormalize_image
+from interpretability.shap2 import shap_analysis
+from interpretability.gradcam_backprop import apply_gradcam_backprop_all
+from interpretability.guided_gradcam import apply_guided_gradcam_all
+#from interpretability.gradcam_all import run_gradcam_all
+from interpretability.lime import run_lime
+from interpretability.gradcam import run_gradcam
 
 # Configuration and paths
-CSV_PATH1 = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data/39_20250401_0816.csv'
-CSV_PATH2 = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data/43_3.csv'
-IMG_DIR = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data/twitter'
+CSV_PATH1 = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/39_20250401_0816.csv'
+CSV_PATH2 = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/43_3.csv'
+IMG_DIR = '/fhome/pfeliu/tfg_feliu/data/twitter'
 OUTPUT_DIR = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output'
-AGREED_DF_PATH = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data/X_labels_agreements_0204.csv'
+AGREED_DF_PATH = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/X_labels_agreements_0204.csv'
 MODEL_CHOICE = 'ResNet18'  # Options: ResNet18, EfficientNetB0, DenseNet121, ResNet50
 SPANISH_DIR = '/fhome/pfeliu/tfg_feliu/data/spanish_dataset'
+CHECKPOINT_PATH = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/trained_model_test.pth'
 
 def prepare_data():
     df1 = process_csv(CSV_PATH1, IMG_DIR)
@@ -122,16 +134,6 @@ def train_model(model, train_loader, device, num_epochs=10):
             
         print(f"Epoch {epoch+1}/{num_epochs}, Loss: {running_loss/len(train_loader):.4f}")
 
-def denormalize_image(tensor_image):
-    """
-    Converts a normalized tensor image back to a NumPy array in [0,1].
-    """
-    image = tensor_image.cpu().numpy().transpose(1, 2, 0)
-    mean = np.array([0.485, 0.456, 0.406])
-    std = np.array([0.229, 0.224, 0.225])
-    image = std * image + mean
-    return np.clip(image, 0, 1)
-
 def enhance_explanation(explanation, threshold=0.3, blur_kernel=(7, 7)):
     """
     Enhance the explanation heatmap by thresholding and smoothing.
@@ -156,32 +158,6 @@ def enhance_explanation(explanation, threshold=0.3, blur_kernel=(7, 7)):
     enhanced = cv2.GaussianBlur(enhanced, blur_kernel, 0)
     
     return enhanced
-
-
-def run_gradcam(model, test_dataset, device):
-    gradcam_output_dir = os.path.join(OUTPUT_DIR, "grad_cam")
-    os.makedirs(gradcam_output_dir, exist_ok=True)
-
-    for img_idx in range(15):
-        sample_image, sample_image_name, sample_labels = test_dataset[img_idx]
-        input_tensor = sample_image.unsqueeze(0).to(device)
-        # Assuming the target layer (for ResNet-based backbones) is layer4
-        target_layer = model.backbone.backbone.layer4
-        gradcam = GradCAM(model, target_layer)
-        cam = gradcam.generate_cam(input_tensor)
-        cam_resized = cv2.resize(cam, (224, 224))
-        
-        original_img = denormalize_image(sample_image)
-        
-        plt.imshow(original_img)
-        plt.imshow(cam_resized, cmap='jet', alpha=0.5)
-        plt.title("GradCAM - Nature Visual")
-        plt.axis('off')
-
-        gradcam_path = os.path.join(OUTPUT_DIR, "grad_cam", f"{sample_image_name}_gradcam.png")
-        plt.savefig(gradcam_path, bbox_inches='tight')
-        plt.close()
-        print(f"GradCAM output saved to {gradcam_path}")
 
 '''def run_shap(model, test_dataset, device):
     """
@@ -221,7 +197,6 @@ def run_gradcam(model, test_dataset, device):
         plt.savefig(shap_path, bbox_inches='tight')
         plt.close()
         print(f"SHAP output saved to {shap_path}")'''
-
 
 def run_shap(model, test_dataset, device):
     """
@@ -279,19 +254,6 @@ def run_shap(model, test_dataset, device):
             plt.close()
             print(f"SHAP output saved to {shap_path}")
 
-def run_lime(model, test_dataset, device):
-    lime_output_dir = os.path.join(OUTPUT_DIR, "lime")
-    os.makedirs(lime_output_dir, exist_ok=True)
-    
-    lime_explainer = LIMEExplainer(model, device)
-    for idx in range(15):
-        sample_image, sample_image_name, _ = test_dataset[idx]
-        # Convert image tensor to a NumPy array in [0,1].
-        image_np = denormalize_image(sample_image)
-        
-        save_path = os.path.join(lime_output_dir, f"{sample_image_name}_lime.png")
-        lime_explainer.explain(image_np, target_task=0, save_path=save_path)
-        print(f"LIME explanation saved to {save_path}")
 
 def evaluate_model(model, test_loader, device):
     weights_nature = torch.tensor([1.0, 1.0]).to(device)
@@ -364,9 +326,6 @@ def disable_inplace_relu(model):
             module.inplace = False
     
 
-import types
-import torchvision.models.resnet as resnet
-
 def patch_resnet_inplace(model):
     """
     Patches all BasicBlock modules in the model so that in-place additions
@@ -432,17 +391,66 @@ def main():
     patch_resnet_inplace(model)
 
     # Step 3: Training
-    train_model(model, train_loader, device, num_epochs=5)
+    #train_model(model, train_loader, device, num_epochs=10)
 
+
+    if not os.path.isfile(CHECKPOINT_PATH):
+        raise FileNotFoundError(f"Checkpoint not found: {CHECKPOINT_PATH}")
+    print(f"Loading weights from {CHECKPOINT_PATH}")
+    state = torch.load(CHECKPOINT_PATH, map_location=device)
+    model.load_state_dict(state)
+    model.eval()
+    
+    
     # GradCAM Visualization on a few test samples.
     #run_gradcam(model, test_dataset, device)
+
+    # Grad-CAM para todas las tasks:
+    '''run_gradcam_all(
+        multi_model=model,
+        test_dataset=test_dataset,
+        device=device,
+        output_dir=OUTPUT_DIR,
+        num_images=15,  # o la cantidad de ejemplos que prefieras
+        alpha=0.5
+    )
+    print("\nGrad-CAM para todas las tareas ejecutado.")'''
     #print("\ngrad cam ejecutado")
+
+
     # SHAP explanation.
     #run_shap(model, test_dataset, device)
     #print("\nshap ejecutado")
+
+
     # LIME explanation.
-    #run_lime(model, test_dataset, device)
+    lime_output_dir = os.path.join(OUTPUT_DIR, "lime_all")
+    os.makedirs(lime_output_dir, exist_ok=True)
+    run_lime(model, test_dataset, device, num_images=10, output_dir=lime_output_dir)
     #print("\nlime ejecutado")
+
+    '''
+    SHAP EXPLANATION
+    shap_output_dir = os.path.join(OUTPUT_DIR, "shap2")
+    os.makedirs(shap_output_dir, exist_ok=True)
+    shap_analysis(model, test_dataset, device, num_images=10, output_dir=shap_output_dir)'''
+
+    #gradcam_backprop_dir = os.path.join(OUTPUT_DIR, "gradcam_backpropagation")
+
+    '''
+    GUIDED GRADCAM
+    
+    guided_dir = os.path.join(OUTPUT_DIR, "guided_gradcam")
+    #print(f"\nRunning Grad‐CAM on {args.task}, saving to {gradcam_dir}")
+    apply_guided_gradcam_all(
+        multi_model=model,
+        device=device,
+        data_loader=test_loader,
+        output_dir=guided_dir,
+        num_images=30,                         # or however many per task
+        target_layer="model.backbone.backbone.layer4",
+        alpha=0.5
+    )'''
 
     # Step 5: Evaluation on Test Set.
     evaluate_model(model, test_loader, device)
