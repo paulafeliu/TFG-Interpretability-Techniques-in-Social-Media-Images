@@ -1,0 +1,110 @@
+El DataFrame tiene 303 filas.
+El DataFrame tiene 1136 filas.
+El DataFrame tiene 237 filas.
+El DataFrame de agreed tiene 1669 filas.
+
+Etiquetas únicas en nature_visual:
+['No' 'Yes']
+------
+nature_visual
+No     1084
+Yes     585
+Name: count, dtype: int64
+Etiquetas únicas en nep_materiality_visual:
+[nan 'material' 'immaterial']
+------
+nep_materiality_visual
+material      314
+immaterial    273
+Name: count, dtype: int64
+Etiquetas únicas en nep_biological_visual:
+[nan 'biotic' 'abiotic']
+------
+nep_biological_visual
+biotic     480
+abiotic    105
+Name: count, dtype: int64
+Etiquetas únicas en landscape-type_visual:
+[nan 'artificial_surfaces' 'forest_and_seminatural_areas' 'water_bodies'
+ 'other' 'none' 'agricultural_areas' 'wetlands']
+------
+landscape-type_visual
+none                            493
+artificial_surfaces             124
+forest_and_seminatural_areas     45
+water_bodies                     19
+agricultural_areas                9
+other                             4
+wetlands                          1
+Name: count, dtype: int64
+
+Total de imágenes: 1669
+Loading weights from /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/trained_model_test.pth
+Running GRADCAM on seen samples samples → /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GRADCAM/seen samples
+
+→ Generating 30 Grad-CAMs for 'nature_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GRADCAM/seen samples/nature_visual
+Exhausted data – saved 30 Grad-CAMs for 'nature_visual'.
+
+→ Generating 30 Grad-CAMs for 'nep_materiality_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GRADCAM/seen samples/nep_materiality_visual
+Exhausted data – saved 30 Grad-CAMs for 'nep_materiality_visual'.
+
+→ Generating 30 Grad-CAMs for 'nep_biological_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GRADCAM/seen samples/nep_biological_visual
+Exhausted data – saved 30 Grad-CAMs for 'nep_biological_visual'.
+
+→ Generating 30 Grad-CAMs for 'landscape-type_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GRADCAM/seen samples/landscape-type_visual
+Exhausted data – saved 30 Grad-CAMs for 'landscape-type_visual'.
+Running GRADCAM on unseen samples samples → /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GRADCAM/unseen samples
+
+→ Generating 30 Grad-CAMs for 'nature_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GRADCAM/unseen samples/nature_visual
+Saved 30 Grad-CAMs for 'nature_visual'.
+
+→ Generating 30 Grad-CAMs for 'nep_materiality_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GRADCAM/unseen samples/nep_materiality_visual
+Saved 30 Grad-CAMs for 'nep_materiality_visual'.
+
+→ Generating 30 Grad-CAMs for 'nep_biological_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GRADCAM/unseen samples/nep_biological_visual
+Saved 30 Grad-CAMs for 'nep_biological_visual'.
+
+→ Generating 30 Grad-CAMs for 'landscape-type_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GRADCAM/unseen samples/landscape-type_visual
+Saved 30 Grad-CAMs for 'landscape-type_visual'.
+Running GUIDED_GRADCAM on seen samples samples → /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GUIDED_GRADCAM/seen samples
+
+→ Generating 30 guided Grad-CAMs for 'nature_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GUIDED_GRADCAM/seen samples/nature_visual
+Exhausted data – saved 30 guided Grad-CAMs.
+
+→ Generating 30 guided Grad-CAMs for 'nep_materiality_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GUIDED_GRADCAM/seen samples/nep_materiality_visual
+Exhausted data – saved 30 guided Grad-CAMs.
+
+→ Generating 30 guided Grad-CAMs for 'nep_biological_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GUIDED_GRADCAM/seen samples/nep_biological_visual
+Exhausted data – saved 30 guided Grad-CAMs.
+
+→ Generating 30 guided Grad-CAMs for 'landscape-type_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GUIDED_GRADCAM/seen samples/landscape-type_visual
+Exhausted data – saved 30 guided Grad-CAMs.
+Running GUIDED_GRADCAM on unseen samples samples → /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GUIDED_GRADCAM/unseen samples
+
+→ Generating 30 guided Grad-CAMs for 'nature_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GUIDED_GRADCAM/unseen samples/nature_visual
+Saved 30 guided Grad-CAMs → done.
+
+→ Generating 30 guided Grad-CAMs for 'nep_materiality_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GUIDED_GRADCAM/unseen samples/nep_materiality_visual
+Saved 30 guided Grad-CAMs → done.
+
+→ Generating 30 guided Grad-CAMs for 'nep_biological_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GUIDED_GRADCAM/unseen samples/nep_biological_visual
+Saved 30 guided Grad-CAMs → done.
+
+→ Generating 30 guided Grad-CAMs for 'landscape-type_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GUIDED_GRADCAM/unseen samples/landscape-type_visual
+Saved 30 guided Grad-CAMs → done.
+Running SHAP on seen samples samples → /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/SHAP/seen samples
+
+→ Generating 30 SHAP overlays for 'nature_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/SHAP/seen samples/nature_visual
+Exhausted data – saved 30 SHAP maps for 'nature_visual'.
+
+→ Generating 30 SHAP overlays for 'nep_materiality_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/SHAP/seen samples/nep_materiality_visual
+Exhausted data – saved 30 SHAP maps for 'nep_materiality_visual'.
+
+→ Generating 30 SHAP overlays for 'nep_biological_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/SHAP/seen samples/nep_biological_visual
+Exhausted data – saved 30 SHAP maps for 'nep_biological_visual'.
+
+→ Generating 30 SHAP overlays for 'landscape-type_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/SHAP/seen samples/landscape-type_visual
+Exhausted data – saved 30 SHAP maps for 'landscape-type_visual'.
+Running SHAP on unseen samples samples → /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/SHAP/unseen samples
+
+→ Generating 30 SHAP overlays for 'nature_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/SHAP/unseen samples/nature_visual

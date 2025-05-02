@@ -1,0 +1,133 @@
+El DataFrame tiene 308 filas.
+El DataFrame tiene 1143 filas.
+El DataFrame de agreed tiene 1444 filas.
+
+Etiquetas únicas en nature_visual:
+['No' 'Yes']
+------
+nature_visual
+No     941
+Yes    503
+Name: count, dtype: int64
+Etiquetas únicas en nep_materiality_visual:
+[nan 'material' 'immaterial']
+------
+nep_materiality_visual
+material      279
+immaterial    225
+Name: count, dtype: int64
+Etiquetas únicas en nep_biological_visual:
+[nan 'biotic' 'abiotic']
+------
+nep_biological_visual
+biotic     416
+abiotic     87
+Name: count, dtype: int64
+Etiquetas únicas en landscape-type_visual:
+[nan 'artificial_surfaces' 'forest_and_seminatural_areas' 'water_bodies'
+ 'other' 'none' 'agricultural_areas' 'wetlands']
+------
+landscape-type_visual
+none                            279
+artificial_surfaces             115
+forest_and_seminatural_areas     46
+water_bodies                     16
+agricultural_areas                7
+other                             4
+wetlands                          1
+Name: count, dtype: int64
+
+Total de imágenes: 1444
+Loading weights from /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/trained_model_test.pth
+
+→ Generating 30 Grad-CAMs for 'nature_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GRADCAM/nature_visual
+Saved 30 Grad-CAMs for 'nature_visual'.
+
+→ Generating 30 Grad-CAMs for 'nep_materiality_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GRADCAM/nep_materiality_visual
+Saved 30 Grad-CAMs for 'nep_materiality_visual'.
+
+→ Generating 30 Grad-CAMs for 'nep_biological_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GRADCAM/nep_biological_visual
+Saved 30 Grad-CAMs for 'nep_biological_visual'.
+
+→ Generating 30 Grad-CAMs for 'landscape-type_visual', saving to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/GRADCAM/landscape-type_visual
+Saved 30 Grad-CAMs for 'landscape-type_visual'.
+
+ BASIC GRADCAM ejecutado
+
+Test Loss: 0.4994
+Accuracy for nature_visual: 96.55%
+
+Confusion Matrix - nature_visual:
+[[81  1]
+ [ 4 59]]
+
+Classification Report - nature_visual:
+              precision    recall  f1-score   support
+
+           0       0.95      0.99      0.97        82
+           1       0.98      0.94      0.96        63
+
+    accuracy                           0.97       145
+   macro avg       0.97      0.96      0.96       145
+weighted avg       0.97      0.97      0.97       145
+
+Accuracy for nep_materiality_visual: 95.17%
+
+Confusion Matrix - nep_materiality_visual:
+[[38  0  2]
+ [ 1 18  4]
+ [ 0  0 82]]
+
+Classification Report - nep_materiality_visual:
+              precision    recall  f1-score   support
+
+           0       0.97      0.95      0.96        40
+           1       1.00      0.78      0.88        23
+           2       0.93      1.00      0.96        82
+
+    accuracy                           0.95       145
+   macro avg       0.97      0.91      0.93       145
+weighted avg       0.95      0.95      0.95       145
+
+Accuracy for nep_biological_visual: 96.55%
+
+Confusion Matrix - nep_biological_visual:
+[[44  0  4]
+ [ 0 14  1]
+ [ 0  0 82]]
+
+Classification Report - nep_biological_visual:
+              precision    recall  f1-score   support
+
+           0       1.00      0.92      0.96        48
+           1       1.00      0.93      0.97        15
+           2       0.94      1.00      0.97        82
+
+    accuracy                           0.97       145
+   macro avg       0.98      0.95      0.96       145
+weighted avg       0.97      0.97      0.97       145
+
+Accuracy for landscape-type_visual: 94.48%
+
+Confusion Matrix - landscape-type_visual:
+[[11  0  1  0  0  1]
+ [ 0  2  0  0  0  0]
+ [ 0  0  3  0  0  0]
+ [ 0  0  0  1  0  0]
+ [ 1  0  0  0 33  3]
+ [ 0  0  1  0  1 87]]
+
+Classification Report - landscape-type_visual:
+              precision    recall  f1-score   support
+
+           0       0.92      0.85      0.88        13
+           1       1.00      1.00      1.00         2
+           3       0.60      1.00      0.75         3
+           5       1.00      1.00      1.00         1
+           6       0.97      0.89      0.93        37
+           7       0.96      0.98      0.97        89
+
+    accuracy                           0.94       145
+   macro avg       0.91      0.95      0.92       145
+weighted avg       0.95      0.94      0.95       145
+

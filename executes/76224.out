@@ -1,0 +1,170 @@
+El DataFrame tiene 303 filas.
+El DataFrame tiene 1136 filas.
+El DataFrame tiene 237 filas.
+El DataFrame de agreed tiene 1669 filas.
+
+Etiquetas únicas en nature_visual:
+['No' 'Yes']
+------
+nature_visual
+No     1084
+Yes     585
+Name: count, dtype: int64
+Etiquetas únicas en nep_materiality_visual:
+[nan 'material' 'immaterial']
+------
+nep_materiality_visual
+material      314
+immaterial    273
+Name: count, dtype: int64
+Etiquetas únicas en nep_biological_visual:
+[nan 'biotic' 'abiotic']
+------
+nep_biological_visual
+biotic     480
+abiotic    105
+Name: count, dtype: int64
+Etiquetas únicas en landscape-type_visual:
+[nan 'artificial_surfaces' 'forest_and_seminatural_areas' 'water_bodies'
+ 'other' 'none' 'agricultural_areas' 'wetlands']
+------
+landscape-type_visual
+none                            493
+artificial_surfaces             124
+forest_and_seminatural_areas     45
+water_bodies                     19
+agricultural_areas                9
+other                             4
+wetlands                          1
+Name: count, dtype: int64
+
+Total de imágenes: 1669
+Epoch 1/50, Loss: 3.5181
+Epoch 2/50, Loss: 2.6255
+Epoch 3/50, Loss: 2.2881
+Epoch 4/50, Loss: 2.1188
+Epoch 5/50, Loss: 1.8998
+Epoch 6/50, Loss: 1.6787
+Epoch 7/50, Loss: 1.5920
+Epoch 8/50, Loss: 1.4947
+Epoch 9/50, Loss: 1.3360
+Epoch 10/50, Loss: 1.2136
+Epoch 11/50, Loss: 1.1448
+Epoch 12/50, Loss: 1.1011
+Epoch 13/50, Loss: 0.9970
+Epoch 14/50, Loss: 1.1137
+Epoch 15/50, Loss: 0.9052
+Epoch 16/50, Loss: 0.8631
+Epoch 17/50, Loss: 0.9139
+Epoch 18/50, Loss: 0.8311
+Epoch 19/50, Loss: 0.7436
+Epoch 20/50, Loss: 0.7770
+Epoch 21/50, Loss: 0.7148
+Epoch 22/50, Loss: 0.7897
+Epoch 23/50, Loss: 0.7557
+Epoch 24/50, Loss: 0.7098
+Epoch 25/50, Loss: 0.6369
+Epoch 26/50, Loss: 0.6021
+Epoch 27/50, Loss: 0.6216
+Epoch 28/50, Loss: 0.5204
+Epoch 29/50, Loss: 0.6280
+Epoch 30/50, Loss: 0.5465
+Epoch 31/50, Loss: 0.7211
+Epoch 32/50, Loss: 0.6116
+Epoch 33/50, Loss: 0.5946
+Epoch 34/50, Loss: 0.5655
+Epoch 35/50, Loss: 0.5054
+Epoch 36/50, Loss: 0.6287
+Epoch 37/50, Loss: 0.5335
+Epoch 38/50, Loss: 0.5457
+Epoch 39/50, Loss: 0.5577
+Epoch 40/50, Loss: 0.5283
+Epoch 41/50, Loss: 0.4963
+Epoch 42/50, Loss: 0.5778
+Epoch 43/50, Loss: 0.4962
+Epoch 44/50, Loss: 0.5839
+Epoch 45/50, Loss: 0.5312
+Epoch 46/50, Loss: 0.4033
+Epoch 47/50, Loss: 0.4857
+Epoch 48/50, Loss: 0.5221
+Epoch 49/50, Loss: 0.4863
+Epoch 50/50, Loss: 0.4281
+Model saved to /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/trained_model_test.pth
+
+Test Loss: 4.9473
+Accuracy for nature_visual: 73.65%
+
+Confusion Matrix - nature_visual:
+[[88 18]
+ [26 35]]
+
+Classification Report - nature_visual:
+              precision    recall  f1-score   support
+
+           0       0.77      0.83      0.80       106
+           1       0.66      0.57      0.61        61
+
+    accuracy                           0.74       167
+   macro avg       0.72      0.70      0.71       167
+weighted avg       0.73      0.74      0.73       167
+
+Accuracy for nep_materiality_visual: 70.66%
+
+Confusion Matrix - nep_materiality_visual:
+[[19  3 10]
+ [ 2 11 16]
+ [ 9  9 88]]
+
+Classification Report - nep_materiality_visual:
+              precision    recall  f1-score   support
+
+           0       0.63      0.59      0.61        32
+           1       0.48      0.38      0.42        29
+           2       0.77      0.83      0.80       106
+
+    accuracy                           0.71       167
+   macro avg       0.63      0.60      0.61       167
+weighted avg       0.69      0.71      0.70       167
+
+Accuracy for nep_biological_visual: 73.05%
+
+Confusion Matrix - nep_biological_visual:
+[[29  1 18]
+ [ 3  3  7]
+ [13  3 90]]
+
+Classification Report - nep_biological_visual:
+              precision    recall  f1-score   support
+
+           0       0.64      0.60      0.62        48
+           1       0.43      0.23      0.30        13
+           2       0.78      0.85      0.81       106
+
+    accuracy                           0.73       167
+   macro avg       0.62      0.56      0.58       167
+weighted avg       0.72      0.73      0.72       167
+
+Accuracy for landscape-type_visual: 47.90%
+
+Confusion Matrix - landscape-type_visual:
+[[ 4  0  1  0  3  4]
+ [ 3  1  0  0  1  1]
+ [ 0  1  1  0  0  3]
+ [ 0  0  0  1  0  0]
+ [ 1  0  0  1 10 40]
+ [ 4  0  0  0 24 63]]
+
+Classification Report - landscape-type_visual:
+              precision    recall  f1-score   support
+
+           0       0.33      0.33      0.33        12
+           1       0.50      0.17      0.25         6
+           3       0.50      0.20      0.29         5
+           4       0.50      1.00      0.67         1
+           6       0.26      0.19      0.22        52
+           7       0.57      0.69      0.62        91
+
+    accuracy                           0.48       167
+   macro avg       0.44      0.43      0.40       167
+weighted avg       0.45      0.48      0.45       167
+
