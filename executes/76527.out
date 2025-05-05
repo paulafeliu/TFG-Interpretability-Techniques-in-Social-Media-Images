@@ -1,0 +1,366 @@
+El DataFrame tiene 303 filas.
+El DataFrame tiene 1136 filas.
+El DataFrame tiene 237 filas.
+El DataFrame de agreed tiene 1669 filas.
+
+Etiquetas únicas en nature_visual:
+['No' 'Yes']
+------
+nature_visual
+No     1084
+Yes     585
+Name: count, dtype: int64
+Etiquetas únicas en nep_materiality_visual:
+[nan 'material' 'immaterial']
+------
+nep_materiality_visual
+material      314
+immaterial    273
+Name: count, dtype: int64
+Etiquetas únicas en nep_biological_visual:
+[nan 'biotic' 'abiotic']
+------
+nep_biological_visual
+biotic     480
+abiotic    105
+Name: count, dtype: int64
+Etiquetas únicas en landscape-type_visual:
+[nan 'artificial_surfaces' 'forest_and_seminatural_areas' 'water_bodies'
+ 'other' 'none' 'agricultural_areas' 'wetlands']
+------
+landscape-type_visual
+none                            493
+artificial_surfaces             124
+forest_and_seminatural_areas     45
+water_bodies                     19
+agricultural_areas                9
+other                             4
+wetlands                          1
+Name: count, dtype: int64
+
+Total de imágenes: 1669
+Loading weights from /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/trained_model_test.pth
+Running LIME on seen samples samples → /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples
+LIME explanation saved for 1665977822857363456_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1665977822857363456_0_lime_nature_visual.png
+LIME explanation saved for 1665977822857363456_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1665977822857363456_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1665977822857363456_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1665977822857363456_0_lime_nep_biological_visual.png
+LIME explanation saved for 1665977822857363456_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1665977822857363456_0_lime_landscape-type_visual.png
+LIME explanation saved for 1577932670155251715_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1577932670155251715_0_lime_nature_visual.png
+LIME explanation saved for 1577932670155251715_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1577932670155251715_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1577932670155251715_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1577932670155251715_0_lime_nep_biological_visual.png
+LIME explanation saved for 1577932670155251715_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1577932670155251715_0_lime_landscape-type_visual.png
+LIME explanation saved for 1484768790487437315_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1484768790487437315_0_lime_nature_visual.png
+LIME explanation saved for 1484768790487437315_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1484768790487437315_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1484768790487437315_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1484768790487437315_0_lime_nep_biological_visual.png
+LIME explanation saved for 1484768790487437315_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1484768790487437315_0_lime_landscape-type_visual.png
+LIME explanation saved for 1600430917280858113_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1600430917280858113_0_lime_nature_visual.png
+LIME explanation saved for 1600430917280858113_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1600430917280858113_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1600430917280858113_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1600430917280858113_0_lime_nep_biological_visual.png
+LIME explanation saved for 1600430917280858113_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1600430917280858113_0_lime_landscape-type_visual.png
+LIME explanation saved for 1739663355504427304_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1739663355504427304_0_lime_nature_visual.png
+LIME explanation saved for 1739663355504427304_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1739663355504427304_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1739663355504427304_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1739663355504427304_0_lime_nep_biological_visual.png
+LIME explanation saved for 1739663355504427304_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1739663355504427304_0_lime_landscape-type_visual.png
+LIME explanation saved for 1625390380916121600_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1625390380916121600_0_lime_nature_visual.png
+LIME explanation saved for 1625390380916121600_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1625390380916121600_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1625390380916121600_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1625390380916121600_0_lime_nep_biological_visual.png
+LIME explanation saved for 1625390380916121600_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1625390380916121600_0_lime_landscape-type_visual.png
+LIME explanation saved for 1506436564930412546_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1506436564930412546_0_lime_nature_visual.png
+LIME explanation saved for 1506436564930412546_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1506436564930412546_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1506436564930412546_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1506436564930412546_0_lime_nep_biological_visual.png
+LIME explanation saved for 1506436564930412546_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1506436564930412546_0_lime_landscape-type_visual.png
+LIME explanation saved for 1599222958098157573_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1599222958098157573_0_lime_nature_visual.png
+LIME explanation saved for 1599222958098157573_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1599222958098157573_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1599222958098157573_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1599222958098157573_0_lime_nep_biological_visual.png
+LIME explanation saved for 1599222958098157573_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1599222958098157573_0_lime_landscape-type_visual.png
+LIME explanation saved for 1560568252425572353_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1560568252425572353_0_lime_nature_visual.png
+LIME explanation saved for 1560568252425572353_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1560568252425572353_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1560568252425572353_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1560568252425572353_0_lime_nep_biological_visual.png
+LIME explanation saved for 1560568252425572353_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1560568252425572353_0_lime_landscape-type_visual.png
+LIME explanation saved for 1585859905369636869_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1585859905369636869_0_lime_nature_visual.png
+LIME explanation saved for 1585859905369636869_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1585859905369636869_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1585859905369636869_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1585859905369636869_0_lime_nep_biological_visual.png
+LIME explanation saved for 1585859905369636869_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1585859905369636869_0_lime_landscape-type_visual.png
+LIME explanation saved for 1512249870329204741_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1512249870329204741_0_lime_nature_visual.png
+LIME explanation saved for 1512249870329204741_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1512249870329204741_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1512249870329204741_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1512249870329204741_0_lime_nep_biological_visual.png
+LIME explanation saved for 1512249870329204741_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1512249870329204741_0_lime_landscape-type_visual.png
+LIME explanation saved for 1647240356948328450_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1647240356948328450_0_lime_nature_visual.png
+LIME explanation saved for 1647240356948328450_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1647240356948328450_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1647240356948328450_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1647240356948328450_0_lime_nep_biological_visual.png
+LIME explanation saved for 1647240356948328450_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1647240356948328450_0_lime_landscape-type_visual.png
+LIME explanation saved for 1629120963622375431_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1629120963622375431_0_lime_nature_visual.png
+LIME explanation saved for 1629120963622375431_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1629120963622375431_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1629120963622375431_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1629120963622375431_0_lime_nep_biological_visual.png
+LIME explanation saved for 1629120963622375431_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1629120963622375431_0_lime_landscape-type_visual.png
+LIME explanation saved for 1483862820739497985_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1483862820739497985_0_lime_nature_visual.png
+LIME explanation saved for 1483862820739497985_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1483862820739497985_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1483862820739497985_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1483862820739497985_0_lime_nep_biological_visual.png
+LIME explanation saved for 1483862820739497985_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1483862820739497985_0_lime_landscape-type_visual.png
+LIME explanation saved for 1632155962042900480_1, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1632155962042900480_1_lime_nature_visual.png
+LIME explanation saved for 1632155962042900480_1, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1632155962042900480_1_lime_nep_materiality_visual.png
+LIME explanation saved for 1632155962042900480_1, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1632155962042900480_1_lime_nep_biological_visual.png
+LIME explanation saved for 1632155962042900480_1, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1632155962042900480_1_lime_landscape-type_visual.png
+LIME explanation saved for 1647421550520602624_1, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1647421550520602624_1_lime_nature_visual.png
+LIME explanation saved for 1647421550520602624_1, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1647421550520602624_1_lime_nep_materiality_visual.png
+LIME explanation saved for 1647421550520602624_1, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1647421550520602624_1_lime_nep_biological_visual.png
+LIME explanation saved for 1647421550520602624_1, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1647421550520602624_1_lime_landscape-type_visual.png
+LIME explanation saved for 1639992599632048133_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1639992599632048133_0_lime_nature_visual.png
+LIME explanation saved for 1639992599632048133_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1639992599632048133_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1639992599632048133_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1639992599632048133_0_lime_nep_biological_visual.png
+LIME explanation saved for 1639992599632048133_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1639992599632048133_0_lime_landscape-type_visual.png
+LIME explanation saved for 1520403597233688576_1, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1520403597233688576_1_lime_nature_visual.png
+LIME explanation saved for 1520403597233688576_1, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1520403597233688576_1_lime_nep_materiality_visual.png
+LIME explanation saved for 1520403597233688576_1, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1520403597233688576_1_lime_nep_biological_visual.png
+LIME explanation saved for 1520403597233688576_1, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1520403597233688576_1_lime_landscape-type_visual.png
+LIME explanation saved for 1489600628737421314_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1489600628737421314_0_lime_nature_visual.png
+LIME explanation saved for 1489600628737421314_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1489600628737421314_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1489600628737421314_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1489600628737421314_0_lime_nep_biological_visual.png
+LIME explanation saved for 1489600628737421314_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1489600628737421314_0_lime_landscape-type_visual.png
+LIME explanation saved for 1724850751514562654_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1724850751514562654_0_lime_nature_visual.png
+LIME explanation saved for 1724850751514562654_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1724850751514562654_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1724850751514562654_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1724850751514562654_0_lime_nep_biological_visual.png
+LIME explanation saved for 1724850751514562654_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1724850751514562654_0_lime_landscape-type_visual.png
+LIME explanation saved for 1601412384811151361_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1601412384811151361_0_lime_nature_visual.png
+LIME explanation saved for 1601412384811151361_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1601412384811151361_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1601412384811151361_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1601412384811151361_0_lime_nep_biological_visual.png
+LIME explanation saved for 1601412384811151361_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1601412384811151361_0_lime_landscape-type_visual.png
+LIME explanation saved for 1484089313294188544_1, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1484089313294188544_1_lime_nature_visual.png
+LIME explanation saved for 1484089313294188544_1, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1484089313294188544_1_lime_nep_materiality_visual.png
+LIME explanation saved for 1484089313294188544_1, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1484089313294188544_1_lime_nep_biological_visual.png
+LIME explanation saved for 1484089313294188544_1, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1484089313294188544_1_lime_landscape-type_visual.png
+LIME explanation saved for 1567514019778412545_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1567514019778412545_0_lime_nature_visual.png
+LIME explanation saved for 1567514019778412545_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1567514019778412545_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1567514019778412545_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1567514019778412545_0_lime_nep_biological_visual.png
+LIME explanation saved for 1567514019778412545_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1567514019778412545_0_lime_landscape-type_visual.png
+LIME explanation saved for 1491941050117763072_2, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1491941050117763072_2_lime_nature_visual.png
+LIME explanation saved for 1491941050117763072_2, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1491941050117763072_2_lime_nep_materiality_visual.png
+LIME explanation saved for 1491941050117763072_2, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1491941050117763072_2_lime_nep_biological_visual.png
+LIME explanation saved for 1491941050117763072_2, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1491941050117763072_2_lime_landscape-type_visual.png
+LIME explanation saved for 1687283209011146753_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1687283209011146753_0_lime_nature_visual.png
+LIME explanation saved for 1687283209011146753_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1687283209011146753_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1687283209011146753_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1687283209011146753_0_lime_nep_biological_visual.png
+LIME explanation saved for 1687283209011146753_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1687283209011146753_0_lime_landscape-type_visual.png
+LIME explanation saved for 1525235435340898305_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1525235435340898305_0_lime_nature_visual.png
+LIME explanation saved for 1525235435340898305_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1525235435340898305_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1525235435340898305_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1525235435340898305_0_lime_nep_biological_visual.png
+LIME explanation saved for 1525235435340898305_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1525235435340898305_0_lime_landscape-type_visual.png
+LIME explanation saved for 1478577997821231113_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1478577997821231113_0_lime_nature_visual.png
+LIME explanation saved for 1478577997821231113_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1478577997821231113_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1478577997821231113_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1478577997821231113_0_lime_nep_biological_visual.png
+LIME explanation saved for 1478577997821231113_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1478577997821231113_0_lime_landscape-type_visual.png
+LIME explanation saved for 1511645890410340353_1, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1511645890410340353_1_lime_nature_visual.png
+LIME explanation saved for 1511645890410340353_1, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1511645890410340353_1_lime_nep_materiality_visual.png
+LIME explanation saved for 1511645890410340353_1, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1511645890410340353_1_lime_nep_biological_visual.png
+LIME explanation saved for 1511645890410340353_1, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1511645890410340353_1_lime_landscape-type_visual.png
+LIME explanation saved for 1591748708269711364_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1591748708269711364_0_lime_nature_visual.png
+LIME explanation saved for 1591748708269711364_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1591748708269711364_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1591748708269711364_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1591748708269711364_0_lime_nep_biological_visual.png
+LIME explanation saved for 1591748708269711364_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1591748708269711364_0_lime_landscape-type_visual.png
+LIME explanation saved for 1652689261139722242_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nature_visual/1652689261139722242_0_lime_nature_visual.png
+LIME explanation saved for 1652689261139722242_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_materiality_visual/1652689261139722242_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1652689261139722242_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/nep_biological_visual/1652689261139722242_0_lime_nep_biological_visual.png
+LIME explanation saved for 1652689261139722242_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/seen samples/landscape-type_visual/1652689261139722242_0_lime_landscape-type_visual.png
+Running LIME on unseen samples samples → /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples
+LIME explanation saved for 1477219043216142337_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1477219043216142337_0_lime_nature_visual.png
+LIME explanation saved for 1477219043216142337_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1477219043216142337_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1477219043216142337_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1477219043216142337_0_lime_nep_biological_visual.png
+LIME explanation saved for 1477219043216142337_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1477219043216142337_0_lime_landscape-type_visual.png
+LIME explanation saved for 1535956076335620098_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1535956076335620098_0_lime_nature_visual.png
+LIME explanation saved for 1535956076335620098_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1535956076335620098_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1535956076335620098_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1535956076335620098_0_lime_nep_biological_visual.png
+LIME explanation saved for 1535956076335620098_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1535956076335620098_0_lime_landscape-type_visual.png
+LIME explanation saved for 1714749189622579267_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1714749189622579267_0_lime_nature_visual.png
+LIME explanation saved for 1714749189622579267_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1714749189622579267_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1714749189622579267_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1714749189622579267_0_lime_nep_biological_visual.png
+LIME explanation saved for 1714749189622579267_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1714749189622579267_0_lime_landscape-type_visual.png
+LIME explanation saved for 1668076652180525063_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1668076652180525063_0_lime_nature_visual.png
+LIME explanation saved for 1668076652180525063_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1668076652180525063_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1668076652180525063_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1668076652180525063_0_lime_nep_biological_visual.png
+LIME explanation saved for 1668076652180525063_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1668076652180525063_0_lime_landscape-type_visual.png
+LIME explanation saved for 1717527496319439182_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1717527496319439182_0_lime_nature_visual.png
+LIME explanation saved for 1717527496319439182_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1717527496319439182_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1717527496319439182_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1717527496319439182_0_lime_nep_biological_visual.png
+LIME explanation saved for 1717527496319439182_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1717527496319439182_0_lime_landscape-type_visual.png
+LIME explanation saved for 1731494528886988889_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1731494528886988889_0_lime_nature_visual.png
+LIME explanation saved for 1731494528886988889_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1731494528886988889_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1731494528886988889_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1731494528886988889_0_lime_nep_biological_visual.png
+LIME explanation saved for 1731494528886988889_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1731494528886988889_0_lime_landscape-type_visual.png
+LIME explanation saved for 1484844287493820420_3, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1484844287493820420_3_lime_nature_visual.png
+LIME explanation saved for 1484844287493820420_3, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1484844287493820420_3_lime_nep_materiality_visual.png
+LIME explanation saved for 1484844287493820420_3, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1484844287493820420_3_lime_nep_biological_visual.png
+LIME explanation saved for 1484844287493820420_3, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1484844287493820420_3_lime_landscape-type_visual.png
+LIME explanation saved for 1485070780174159873_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1485070780174159873_0_lime_nature_visual.png
+LIME explanation saved for 1485070780174159873_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1485070780174159873_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1485070780174159873_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1485070780174159873_0_lime_nep_biological_visual.png
+LIME explanation saved for 1485070780174159873_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1485070780174159873_0_lime_landscape-type_visual.png
+LIME explanation saved for 1478351505153536013_1, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1478351505153536013_1_lime_nature_visual.png
+LIME explanation saved for 1478351505153536013_1, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1478351505153536013_1_lime_nep_materiality_visual.png
+LIME explanation saved for 1478351505153536013_1, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1478351505153536013_1_lime_nep_biological_visual.png
+LIME explanation saved for 1478351505153536013_1, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1478351505153536013_1_lime_landscape-type_visual.png
+LIME explanation saved for 1588577814517022720_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1588577814517022720_0_lime_nature_visual.png
+LIME explanation saved for 1588577814517022720_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1588577814517022720_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1588577814517022720_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1588577814517022720_0_lime_nep_biological_visual.png
+LIME explanation saved for 1588577814517022720_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1588577814517022720_0_lime_landscape-type_visual.png
+LIME explanation saved for 1652025889901649941_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1652025889901649941_0_lime_nature_visual.png
+LIME explanation saved for 1652025889901649941_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1652025889901649941_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1652025889901649941_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1652025889901649941_0_lime_nep_biological_visual.png
+LIME explanation saved for 1652025889901649941_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1652025889901649941_0_lime_landscape-type_visual.png
+LIME explanation saved for 1479936952363372545_1, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1479936952363372545_1_lime_nature_visual.png
+LIME explanation saved for 1479936952363372545_1, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1479936952363372545_1_lime_nep_materiality_visual.png
+LIME explanation saved for 1479936952363372545_1, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1479936952363372545_1_lime_nep_biological_visual.png
+LIME explanation saved for 1479936952363372545_1, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1479936952363372545_1_lime_landscape-type_visual.png
+LIME explanation saved for 1507720022021476357_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1507720022021476357_0_lime_nature_visual.png
+LIME explanation saved for 1507720022021476357_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1507720022021476357_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1507720022021476357_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1507720022021476357_0_lime_nep_biological_visual.png
+LIME explanation saved for 1507720022021476357_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1507720022021476357_0_lime_landscape-type_visual.png
+LIME explanation saved for 1553773479928901632_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1553773479928901632_0_lime_nature_visual.png
+LIME explanation saved for 1553773479928901632_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1553773479928901632_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1553773479928901632_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1553773479928901632_0_lime_nep_biological_visual.png
+LIME explanation saved for 1553773479928901632_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1553773479928901632_0_lime_landscape-type_visual.png
+LIME explanation saved for 1480691926647062529_2, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1480691926647062529_2_lime_nature_visual.png
+LIME explanation saved for 1480691926647062529_2, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1480691926647062529_2_lime_nep_materiality_visual.png
+LIME explanation saved for 1480691926647062529_2, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1480691926647062529_2_lime_nep_biological_visual.png
+LIME explanation saved for 1480691926647062529_2, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1480691926647062529_2_lime_landscape-type_visual.png
+LIME explanation saved for 1579744610301399041_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1579744610301399041_0_lime_nature_visual.png
+LIME explanation saved for 1579744610301399041_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1579744610301399041_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1579744610301399041_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1579744610301399041_0_lime_nep_biological_visual.png
+LIME explanation saved for 1579744610301399041_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1579744610301399041_0_lime_landscape-type_visual.png
+LIME explanation saved for 1487184709566316553_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1487184709566316553_0_lime_nature_visual.png
+LIME explanation saved for 1487184709566316553_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1487184709566316553_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1487184709566316553_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1487184709566316553_0_lime_nep_biological_visual.png
+LIME explanation saved for 1487184709566316553_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1487184709566316553_0_lime_landscape-type_visual.png
+LIME explanation saved for 1605413750814789632_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1605413750814789632_0_lime_nature_visual.png
+LIME explanation saved for 1605413750814789632_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1605413750814789632_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1605413750814789632_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1605413750814789632_0_lime_nep_biological_visual.png
+LIME explanation saved for 1605413750814789632_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1605413750814789632_0_lime_landscape-type_visual.png
+LIME explanation saved for 1607301187300364289_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1607301187300364289_0_lime_nature_visual.png
+LIME explanation saved for 1607301187300364289_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1607301187300364289_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1607301187300364289_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1607301187300364289_0_lime_nep_biological_visual.png
+LIME explanation saved for 1607301187300364289_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1607301187300364289_0_lime_landscape-type_visual.png
+LIME explanation saved for 1625195095086727169_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1625195095086727169_0_lime_nature_visual.png
+LIME explanation saved for 1625195095086727169_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1625195095086727169_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1625195095086727169_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1625195095086727169_0_lime_nep_biological_visual.png
+LIME explanation saved for 1625195095086727169_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1625195095086727169_0_lime_landscape-type_visual.png
+LIME explanation saved for 1739059375665185123_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1739059375665185123_0_lime_nature_visual.png
+LIME explanation saved for 1739059375665185123_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1739059375665185123_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1739059375665185123_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1739059375665185123_0_lime_nep_biological_visual.png
+LIME explanation saved for 1739059375665185123_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1739059375665185123_0_lime_landscape-type_visual.png
+LIME explanation saved for 1477672028190785546_1, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1477672028190785546_1_lime_nature_visual.png
+LIME explanation saved for 1477672028190785546_1, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1477672028190785546_1_lime_nep_materiality_visual.png
+LIME explanation saved for 1477672028190785546_1, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1477672028190785546_1_lime_nep_biological_visual.png
+LIME explanation saved for 1477672028190785546_1, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1477672028190785546_1_lime_landscape-type_visual.png
+LIME explanation saved for 1479030982657327106_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1479030982657327106_0_lime_nature_visual.png
+LIME explanation saved for 1479030982657327106_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1479030982657327106_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1479030982657327106_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1479030982657327106_0_lime_nep_biological_visual.png
+LIME explanation saved for 1479030982657327106_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1479030982657327106_0_lime_landscape-type_visual.png
+LIME explanation saved for 1477370038151573504_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1477370038151573504_0_lime_nature_visual.png
+LIME explanation saved for 1477370038151573504_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1477370038151573504_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1477370038151573504_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1477370038151573504_0_lime_nep_biological_visual.png
+LIME explanation saved for 1477370038151573504_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1477370038151573504_0_lime_landscape-type_visual.png
+LIME explanation saved for 1573553817500749825_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1573553817500749825_0_lime_nature_visual.png
+LIME explanation saved for 1573553817500749825_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1573553817500749825_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1573553817500749825_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1573553817500749825_0_lime_nep_biological_visual.png
+LIME explanation saved for 1573553817500749825_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1573553817500749825_0_lime_landscape-type_visual.png
+LIME explanation saved for 1589181794125242368_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1589181794125242368_0_lime_nature_visual.png
+LIME explanation saved for 1589181794125242368_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1589181794125242368_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1589181794125242368_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1589181794125242368_0_lime_nep_biological_visual.png
+LIME explanation saved for 1589181794125242368_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1589181794125242368_0_lime_landscape-type_visual.png
+LIME explanation saved for 1480842921230413824_3, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1480842921230413824_3_lime_nature_visual.png
+LIME explanation saved for 1480842921230413824_3, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1480842921230413824_3_lime_nep_materiality_visual.png
+LIME explanation saved for 1480842921230413824_3, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1480842921230413824_3_lime_nep_biological_visual.png
+LIME explanation saved for 1480842921230413824_3, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1480842921230413824_3_lime_landscape-type_visual.png
+LIME explanation saved for 1487109212186497025_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1487109212186497025_0_lime_nature_visual.png
+LIME explanation saved for 1487109212186497025_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1487109212186497025_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1487109212186497025_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1487109212186497025_0_lime_nep_biological_visual.png
+LIME explanation saved for 1487109212186497025_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1487109212186497025_0_lime_landscape-type_visual.png
+LIME explanation saved for 1740992110797422759_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1740992110797422759_0_lime_nature_visual.png
+LIME explanation saved for 1740992110797422759_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1740992110797422759_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1740992110797422759_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1740992110797422759_0_lime_nep_biological_visual.png
+LIME explanation saved for 1740992110797422759_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1740992110797422759_0_lime_landscape-type_visual.png
+LIME explanation saved for 1708694292510990451_0, task 'nature_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nature_visual/1708694292510990451_0_lime_nature_visual.png
+LIME explanation saved for 1708694292510990451_0, task 'nep_materiality_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_materiality_visual/1708694292510990451_0_lime_nep_materiality_visual.png
+LIME explanation saved for 1708694292510990451_0, task 'nep_biological_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/nep_biological_visual/1708694292510990451_0_lime_nep_biological_visual.png
+LIME explanation saved for 1708694292510990451_0, task 'landscape-type_visual' at: /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME/unseen samples/landscape-type_visual/1708694292510990451_0_lime_landscape-type_visual.png
+Running LIME_SMOOTHED on seen samples samples → /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME_SMOOTHED/seen samples
+Running LIME_SMOOTHED on unseen samples samples → /fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/LIME_SMOOTHED/unseen samples
+
+Test Loss: 1.0948
+Accuracy for nature_visual: 94.61%
+
+Confusion Matrix - nature_visual:
+[[100   3]
+ [  6  58]]
+
+Classification Report - nature_visual:
+              precision    recall  f1-score   support
+
+           0       0.94      0.97      0.96       103
+           1       0.95      0.91      0.93        64
+
+    accuracy                           0.95       167
+   macro avg       0.95      0.94      0.94       167
+weighted avg       0.95      0.95      0.95       167
+
+Accuracy for nep_materiality_visual: 94.61%
+
+Confusion Matrix - nep_materiality_visual:
+[[ 35   0   1]
+ [  0  23   5]
+ [  3   0 100]]
+
+Classification Report - nep_materiality_visual:
+              precision    recall  f1-score   support
+
+           0       0.92      0.97      0.95        36
+           1       1.00      0.82      0.90        28
+           2       0.94      0.97      0.96       103
+
+    accuracy                           0.95       167
+   macro avg       0.95      0.92      0.93       167
+weighted avg       0.95      0.95      0.95       167
+
+Accuracy for nep_biological_visual: 94.01%
+
+Confusion Matrix - nep_biological_visual:
+[[ 49   0   5]
+ [  2   8   0]
+ [  3   0 100]]
+
+Classification Report - nep_biological_visual:
+              precision    recall  f1-score   support
+
+           0       0.91      0.91      0.91        54
+           1       1.00      0.80      0.89        10
+           2       0.95      0.97      0.96       103
+
+    accuracy                           0.94       167
+   macro avg       0.95      0.89      0.92       167
+weighted avg       0.94      0.94      0.94       167
+
+Accuracy for landscape-type_visual: 90.42%
+
+Confusion Matrix - landscape-type_visual:
+[[12  0  0  0  0  2  0]
+ [ 1  4  0  0  0  0  1]
+ [ 0  0  1  0  0  0  0]
+ [ 0  0  0  3  0  0  0]
+ [ 0  0  0  0  1  0  0]
+ [ 1  0  0  0  0 40 10]
+ [ 1  0  0  0  0  0 90]]
+
+Classification Report - landscape-type_visual:
+              precision    recall  f1-score   support
+
+           0       0.80      0.86      0.83        14
+           1       1.00      0.67      0.80         6
+           2       1.00      1.00      1.00         1
+           3       1.00      1.00      1.00         3
+           4       1.00      1.00      1.00         1
+           6       0.95      0.78      0.86        51
+           7       0.89      0.99      0.94        91
+
+    accuracy                           0.90       167
+   macro avg       0.95      0.90      0.92       167
+weighted avg       0.91      0.90      0.90       167
+
