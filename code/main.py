@@ -24,6 +24,7 @@ try:
         NUM_EPOCHS
 except ImportError:
     print("No code.settings module found. Copy, rename and adapt the template_settings.py file")
+    exit(1)
 # Import custom modules
 from data_processing.csv_process import process_csv
 from data_processing.dataset import MultiTaskImageDataset
