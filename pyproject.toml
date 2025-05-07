@@ -1,0 +1,14 @@
+[project]
+name = "multi-task-cnn-interpretability"
+version = "0.1.0"
+description = "Multi-task CNN classifier and interpretability methods (Grad-CAM, shap, line and guided Grad-CAM)"
+requires-python = ">=3.12"
+dependencies = [
+    "lime>=0.2.0.1",
+    "matplotlib>=3.10.1",
+    "opencv-python>=4.11.0.86",
+    "pandas>=2.2.3",
+    "scikit-learn>=1.6.1",
+    "shap>=0.47.2",
+    "torchvision>=0.22.0",
+]

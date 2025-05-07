@@ -5,11 +5,15 @@ Module for processing CSV files and returning a cleaned DataFrame.
 """
 
 import os
+from typing import Optional
+
 import numpy as np
 import pandas as pd
 
 
-def process_csv(file_path, img_dir, valid_extensions=['.jpg', '.png', '.jpeg']):
+def process_csv(file_path, img_dir, valid_extensions: Optional[list[str]] = None):
+    if not valid_extensions:
+        valid_extensions = ['.jpg', '.png', '.jpeg']
     df = pd.read_csv(file_path)
     new_rows = []
     for idx in range(4):
@@ -33,6 +37,7 @@ def process_csv(file_path, img_dir, valid_extensions=['.jpg', '.png', '.jpeg']):
                 img_path = os.path.join(img_dir, base_img_name + ext)
                 if os.path.exists(img_path):
                     return True
+            print(f"image missing: {img_path}")
             return False
         
         temp_df = temp_df[temp_df.apply(image_exists, axis=1)]

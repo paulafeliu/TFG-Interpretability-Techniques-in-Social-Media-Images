@@ -4,62 +4,54 @@ main.py
 Main script to run training, evaluation, and interpretability experiments.
 """
 import os
+import types
+from typing import Optional
+
 import cv2
-import copy
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import matplotlib.pyplot as plt
-from torch.utils.data import DataLoader, random_split
-from sklearn.metrics import confusion_matrix, classification_report
-import torchvision.transforms as transforms
-import shap
-import types
 import torchvision.models.resnet as resnet
+import torchvision.transforms as transforms
+from sklearn.metrics import confusion_matrix, classification_report
+from torch.utils.data import DataLoader, random_split, Subset
 
-
+try:
+    from code.settings import CSV_PATH1, IMG_DIR, CSV_PATH2, AGREED_DF_PATH, OUTPUT_DIR, MODEL_CHOICE, CHECKPOINT_PATH, \
+        NUM_EPOCHS
+except ImportError:
+    print("No code.settings module found. Copy, rename and adapt the template_settings.py file")
 # Import custom modules
 from data_processing.csv_process import process_csv
 from data_processing.dataset import MultiTaskImageDataset
+# from interpretability.gradcam_all import run_gradcam_all
+from interpretability.lime import run_lime
+from interpretability.shap import SHAPExplainer
 from models.backbone import CustomBackbone
 from models.multitask_model import MultiTaskModel
-from interpretability.gradcam import GradCAM
-from interpretability.lime import LIMEExplainer
-from interpretability.shap import SHAPExplainer
-from models.wrappers import SingleOutputWrapper
-from utils.visualization import imshow_tensor
-#from gradcam_backprop import GradCAM, GuidedBackprop
+# from gradcam_backprop import GradCAM, GuidedBackprop
 from utils.denormalize_image import denormalize_image
-from interpretability.shap2 import shap_analysis
-from interpretability.gradcam_backprop import apply_gradcam_backprop_all
-from interpretability.guided_gradcam import apply_guided_gradcam_all
-#from interpretability.gradcam_all import run_gradcam_all
-from interpretability.lime import run_lime
-from interpretability.gradcam import run_gradcam
+from torch._C import device as TorchDevice
 
-# Configuration and paths
-CSV_PATH1 = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/39_20250401_0816.csv'
-CSV_PATH2 = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/43_3.csv'
-IMG_DIR = '/fhome/pfeliu/tfg_feliu/data/twitter'
-OUTPUT_DIR = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output'
-AGREED_DF_PATH = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/X_labels_agreements_0204.csv'
-MODEL_CHOICE = 'ResNet18'  # Options: ResNet18, EfficientNetB0, DenseNet121, ResNet50
-SPANISH_DIR = '/fhome/pfeliu/tfg_feliu/data/spanish_dataset'
-CHECKPOINT_PATH = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output/trained_model_test.pth'
 
 def prepare_data():
+    if not IMG_DIR:
+        raise FileNotFoundError('No image directory provided.')
     df1 = process_csv(CSV_PATH1, IMG_DIR)
     df2 = process_csv(CSV_PATH2, IMG_DIR)
     agree_df = pd.concat([df1, df2], ignore_index=True)
     # Filter out specific unwanted landscape labels and remove duplicates
     agree_df = agree_df[~agree_df["landscape-type_visual"].isin([
-        "forest_and_seminatural_areas,water_bodies", "artificial_surfaces,water_bodies", "artificial_surfaces,forest_and_seminatural_areas"])]
+        "forest_and_seminatural_areas,water_bodies", "artificial_surfaces,water_bodies",
+        "artificial_surfaces,forest_and_seminatural_areas"])]
     agree_df = agree_df.drop_duplicates()
     print("El DataFrame de agreed tiene", len(agree_df), "filas.\n")
     agree_df.to_csv(AGREED_DF_PATH, index=False)
     return agree_df
+
 
 def get_transforms():
     transform = transforms.Compose([
@@ -72,6 +64,7 @@ def get_transforms():
                              std=[0.229, 0.224, 0.225])
     ])
     return transform
+
 
 def build_dataset(transform):
     # Define label maps for tasks
@@ -86,7 +79,7 @@ def build_dataset(transform):
             "water_bodies": 3,
             "agricultural_areas": 4,
             "other": 5,
-            "none": 6, 
+            "none": 6,
             'nan': 7
         }
     }
@@ -96,18 +89,19 @@ def build_dataset(transform):
                                     label_maps=label_maps)
     return dataset
 
+
 def train_model(model, train_loader, device, num_epochs=10):
     # Losses per task with equal weights (modify if needed)
     weights_nature = torch.tensor([1.0, 1.0]).to(device)
     weights_materiality = torch.tensor([1.0, 1.0, 1.0]).to(device)
     weights_biological = torch.tensor([1.0, 1.0, 1.0]).to(device)
     weights_landscape = torch.tensor([1.0] * 8).to(device)
-    
+
     criterion_nature = nn.CrossEntropyLoss(weight=weights_nature)
     criterion_materiality = nn.CrossEntropyLoss(weight=weights_materiality)
     criterion_biological = nn.CrossEntropyLoss(weight=weights_biological)
     criterion_landscape = nn.CrossEntropyLoss(weight=weights_landscape)
-    
+
     optimizer = optim.Adam(model.parameters(), lr=1e-4)
     model.train()
 
@@ -119,7 +113,7 @@ def train_model(model, train_loader, device, num_epochs=10):
             labels_materiality = labels['nep_materiality_visual'].to(device)
             labels_biological = labels['nep_biological_visual'].to(device)
             labels_landscape = labels['landscape-type_visual'].to(device)
-            
+
             optimizer.zero_grad()
             out_nature, out_materiality, out_biological, out_landscape = model(images)
             loss_nature = criterion_nature(out_nature, labels_nature)
@@ -127,12 +121,15 @@ def train_model(model, train_loader, device, num_epochs=10):
             loss_biological = criterion_biological(out_biological, labels_biological)
             loss_landscape = criterion_landscape(out_landscape, labels_landscape)
             loss = loss_nature + loss_materiality + loss_biological + loss_landscape
-            
+
             loss.backward()
             optimizer.step()
             running_loss += loss.item()
-            
-        print(f"Epoch {epoch+1}/{num_epochs}, Loss: {running_loss/len(train_loader):.4f}")
+
+        print(f"Epoch {epoch + 1}/{num_epochs}, Loss: {running_loss / len(train_loader):.4f}")
+    # Saving the model
+    torch.save(model.state_dict(), CHECKPOINT_PATH)
+
 
 def enhance_explanation(explanation, threshold=0.3, blur_kernel=(7, 7)):
     """
@@ -149,15 +146,16 @@ def enhance_explanation(explanation, threshold=0.3, blur_kernel=(7, 7)):
     # Threshold: remove low activation (set these to zero)
     enhanced = explanation.copy()
     enhanced[enhanced < threshold] = 0.0
-    
+
     # Optionally, amplify the high activation regions (contrast stretching)
     # For example, multiply by a factor to boost the values.
     enhanced = np.clip(enhanced * 1.5, 0, 1)
-    
+
     # Gaussian Blur: smooth the output to create contiguous regions.
     enhanced = cv2.GaussianBlur(enhanced, blur_kernel, 0)
-    
+
     return enhanced
+
 
 '''def run_shap(model, test_dataset, device):
     """
@@ -197,6 +195,7 @@ def enhance_explanation(explanation, threshold=0.3, blur_kernel=(7, 7)):
         plt.savefig(shap_path, bbox_inches='tight')
         plt.close()
         print(f"SHAP output saved to {shap_path}")'''
+
 
 def run_shap(model, test_dataset, device):
     """
@@ -243,12 +242,12 @@ def run_shap(model, test_dataset, device):
             explanation = shap_explainer.explain(input_tensor, target_task=0)
 
             enhanced_exp = enhance_explanation(explanation, threshold=0.3, blur_kernel=(7, 7))
-            
+
             plt.imshow(original_img)
             plt.imshow(enhanced_exp, cmap='jet', alpha=0.5)
             plt.title(f"SHAP Explanation - {task_name}")
             plt.axis('off')
-            
+
             shap_path = os.path.join(shap_output_dir, f"{sample_image_name}_shap_{task_name}.png")
             plt.savefig(shap_path, bbox_inches='tight')
             plt.close()
@@ -260,19 +259,21 @@ def evaluate_model(model, test_loader, device):
     weights_materiality = torch.tensor([1.0, 1.0, 1.0]).to(device)
     weights_biological = torch.tensor([1.0, 1.0, 1.0]).to(device)
     weights_landscape = torch.tensor([1.0] * 8).to(device)
-    
+
     criterion_nature = nn.CrossEntropyLoss(weight=weights_nature)
     criterion_materiality = nn.CrossEntropyLoss(weight=weights_materiality)
     criterion_biological = nn.CrossEntropyLoss(weight=weights_biological)
     criterion_landscape = nn.CrossEntropyLoss(weight=weights_landscape)
-    
+
     model.eval()
     test_loss = 0.0
     total = 0
 
-    all_preds = {k: [] for k in ['nature_visual', 'nep_materiality_visual', 'nep_biological_visual', 'landscape-type_visual']}
-    all_labels = {k: [] for k in ['nature_visual', 'nep_materiality_visual', 'nep_biological_visual', 'landscape-type_visual']}
-    
+    all_preds = {k: [] for k in
+                 ['nature_visual', 'nep_materiality_visual', 'nep_biological_visual', 'landscape-type_visual']}
+    all_labels = {k: [] for k in
+                  ['nature_visual', 'nep_materiality_visual', 'nep_biological_visual', 'landscape-type_visual']}
+
     with torch.no_grad():
         for images, image_names, labels in test_loader:
             images = images.to(device)
@@ -280,42 +281,43 @@ def evaluate_model(model, test_loader, device):
             labels_materiality = labels['nep_materiality_visual'].to(device)
             labels_biological = labels['nep_biological_visual'].to(device)
             labels_landscape = labels['landscape-type_visual'].to(device)
-            
+
             out_nature, out_materiality, out_biological, out_landscape = model(images)
-            loss = (criterion_nature(out_nature, labels_nature) + 
+            loss = (criterion_nature(out_nature, labels_nature) +
                     criterion_materiality(out_materiality, labels_materiality) +
                     criterion_biological(out_biological, labels_biological) +
                     criterion_landscape(out_landscape, labels_landscape))
             test_loss += loss.item()
-            
+
             preds_nature = out_nature.argmax(dim=1)
             preds_materiality = out_materiality.argmax(dim=1)
             preds_biological = out_biological.argmax(dim=1)
             preds_landscape = out_landscape.argmax(dim=1)
-            
+
             all_preds['nature_visual'].extend(preds_nature.cpu().numpy())
             all_preds['nep_materiality_visual'].extend(preds_materiality.cpu().numpy())
             all_preds['nep_biological_visual'].extend(preds_biological.cpu().numpy())
             all_preds['landscape-type_visual'].extend(preds_landscape.cpu().numpy())
-            
+
             all_labels['nature_visual'].extend(labels_nature.cpu().numpy())
             all_labels['nep_materiality_visual'].extend(labels_materiality.cpu().numpy())
             all_labels['nep_biological_visual'].extend(labels_biological.cpu().numpy())
             all_labels['landscape-type_visual'].extend(labels_landscape.cpu().numpy())
-            
+
             total += images.size(0)
-    
+
     avg_test_loss = test_loss / len(test_loader)
     print(f"\nTest Loss: {avg_test_loss:.4f}")
-    
+
     # Print accuracy per task
     for task in all_preds.keys():
         acc = np.mean(np.array(all_preds[task]) == np.array(all_labels[task]))
-        print(f"Accuracy for {task}: {acc*100:.2f}%")
+        print(f"Accuracy for {task}: {acc * 100:.2f}%")
         print(f"\nConfusion Matrix - {task}:")
         print(confusion_matrix(all_labels[task], all_preds[task]))
         print(f"\nClassification Report - {task}:")
         print(classification_report(all_labels[task], all_preds[task]))
+
 
 def disable_inplace_relu(model):
     """
@@ -324,7 +326,7 @@ def disable_inplace_relu(model):
     for module in model.modules():
         if isinstance(module, torch.nn.ReLU):
             module.inplace = False
-    
+
 
 def patch_resnet_inplace(model):
     """
@@ -346,31 +348,32 @@ def patch_resnet_inplace(model):
                     if self.downsample is not None:
                         identity = self.downsample(x)
                     # Replace in-place addition with an out-of-place addition.
-                    out = out + identity  
+                    out = out + identity
                     out = self.relu(out)
                     return out
+
                 module.forward = types.MethodType(new_forward, module)
                 module.patched_for_shap = True
 
 
-def main():
+def prepare_dataset() -> tuple[Subset, Subset, DataLoader, DataLoader]:
     # Create output directories
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    
+
     # Step 1: Data Preparation
     agree_df = prepare_data()
-    
+
     # Optional: Print unique label values and counts (for debugging)
     for col in ['nature_visual', 'nep_materiality_visual', 'nep_biological_visual', 'landscape-type_visual']:
         print(f"Etiquetas únicas en {col}:")
         print(agree_df[col].unique())
         print("------")
         print(agree_df[col].value_counts())
-    
+
     transform = get_transforms()
     dataset = build_dataset(transform)
     print("\nTotal de imágenes:", len(dataset))
-    
+
     # Split dataset into training and test sets.
     dataset_size = len(dataset)
     train_size = int(0.9 * dataset_size)
@@ -378,11 +381,14 @@ def main():
     train_dataset, test_dataset = random_split(dataset, [train_size, test_size])
     train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
     test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
-    
-    # Step 2: Model Construction
+    return train_dataset, test_dataset, train_loader, test_loader
+
+
+def prepare_model(device: TorchDevice, checkpoint_path: Optional[str] = None) -> MultiTaskModel:
+    # model = torch.hub.load('pytorch/vision:v0.10.0', 'resnet18', pretrained=True)
     backbone = CustomBackbone(model_choice=MODEL_CHOICE)
     model = MultiTaskModel(backbone, backbone.feature_dim)
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
     model = model.to(device)
 
     # Disable in-place ReLU operations
@@ -390,21 +396,57 @@ def main():
     # Patch the ResNet BasicBlocks to avoid in-place addition issues.
     patch_resnet_inplace(model)
 
-    # Step 3: Training
-    #train_model(model, train_loader, device, num_epochs=10)
+    if checkpoint_path:
+        print("preload checkpoint")
+        model_set_checkpoint(model, device, checkpoint_path)
+    return model
 
 
-    if not os.path.isfile(CHECKPOINT_PATH):
-        raise FileNotFoundError(f"Checkpoint not found: {CHECKPOINT_PATH}")
-    print(f"Loading weights from {CHECKPOINT_PATH}")
-    state = torch.load(CHECKPOINT_PATH, map_location=device)
+def model_set_checkpoint(model: MultiTaskModel,
+                         device: TorchDevice,
+                         checkpoint_path: str,
+                         set_eval_mode: bool = True) -> None:
+    if not os.path.isfile(checkpoint_path):
+        raise FileNotFoundError(f"Checkpoint not found: {checkpoint_path}")
+    print(f"Loading weights from {checkpoint_path}")
+    state = torch.load(checkpoint_path, map_location=device)
     model.load_state_dict(state)
-    model.eval()
-    
-    
-    # GradCAM Visualization on a few test samples.
-    #run_gradcam(model, test_dataset, device)
+    if set_eval_mode:
+        model.eval()
 
+
+def main(checkpoint_path: str,
+         train: bool = False,
+         preload_checkpoint: bool = False,
+         run_interpret_gradcam: bool = False,
+         run_interpret_shap: bool = False,
+         run_interpret_lime: bool = False,
+         run_eval: bool = False, ):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # Step 1: Data Preparation
+    train_dataset, test_dataset, train_loader, test_loader = prepare_dataset()
+
+    # Step 2: Model Construction
+    model = prepare_model(device, checkpoint_path if preload_checkpoint else None)
+
+    # Step 3: Training
+    if train:
+        try:
+            train_model(model, train_loader, device, num_epochs=NUM_EPOCHS)
+        except KeyboardInterrupt:
+            save_prompt = input("Training interrupted. Save model? [any key / n]")
+            if save_prompt != "n":
+                print(f"Saving model to {CHECKPOINT_PATH}")
+                torch.save(model.state_dict(), CHECKPOINT_PATH)
+            print("Saliendo")
+            exit(0)
+    model_set_checkpoint(model, device, checkpoint_path)
+
+    # ... check run_interpret_gradcam
+    # GradCAM Visualization on a few test samples.
+    # run_gradcam(model, test_dataset, device)
+
+    # parameter?
     # Grad-CAM para todas las tasks:
     '''run_gradcam_all(
         multi_model=model,
@@ -415,19 +457,19 @@ def main():
         alpha=0.5
     )
     print("\nGrad-CAM para todas las tareas ejecutado.")'''
-    #print("\ngrad cam ejecutado")
+    # print("\ngrad cam ejecutado")
 
-
+    # ... check run_interpret_shap
     # SHAP explanation.
-    #run_shap(model, test_dataset, device)
-    #print("\nshap ejecutado")
-
+    # run_shap(model, test_dataset, device)
+    # print("\nshap ejecutado")
 
     # LIME explanation.
-    lime_output_dir = os.path.join(OUTPUT_DIR, "lime_all")
-    os.makedirs(lime_output_dir, exist_ok=True)
-    run_lime(model, test_dataset, device, num_images=10, output_dir=lime_output_dir)
-    #print("\nlime ejecutado")
+    if run_interpret_lime:
+        lime_output_dir = os.path.join(OUTPUT_DIR, "lime_all")
+        os.makedirs(lime_output_dir, exist_ok=True)
+        run_lime(model, test_dataset, device, num_images=10, output_dir=lime_output_dir)
+        # print("\nlime ejecutado")
 
     '''
     SHAP EXPLANATION
@@ -435,7 +477,7 @@ def main():
     os.makedirs(shap_output_dir, exist_ok=True)
     shap_analysis(model, test_dataset, device, num_images=10, output_dir=shap_output_dir)'''
 
-    #gradcam_backprop_dir = os.path.join(OUTPUT_DIR, "gradcam_backpropagation")
+    # gradcam_backprop_dir = os.path.join(OUTPUT_DIR, "gradcam_backpropagation")
 
     '''
     GUIDED GRADCAM
@@ -453,7 +495,11 @@ def main():
     )'''
 
     # Step 5: Evaluation on Test Set.
-    evaluate_model(model, test_loader, device)
+    if run_eval:
+        evaluate_model(model, test_loader, device)
+
 
 if __name__ == '__main__':
-    main()
+    main(CHECKPOINT_PATH,
+         train=True,
+         preload_checkpoint=False)
