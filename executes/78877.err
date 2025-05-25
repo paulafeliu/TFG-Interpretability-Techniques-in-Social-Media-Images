@@ -1,0 +1,13 @@
+The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=EfficientNet_B0_Weights.IMAGENET1K_V1`. You can also use `weights=EfficientNet_B0_Weights.DEFAULT` to get the most up-to-date weights.
+Palette images with Transparency expressed in bytes should be converted to RGBA images
+y_pred contains classes not in y_true
+invalid value encountered in divide
+Traceback (most recent call last):
+  File "/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/main.py", line 563, in <module>
+    main()
+  File "/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/main.py", line 472, in main
+    metrics = extended_evaluate(model, test_loader, device, output_dir=OUTPUT_DIR+f'/evaluation/{MODEL_CHOICE}')
+  File "/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/code/main.py", line 415, in extended_evaluate
+    save_metrics_table(metrics_list, os.path.join(output_dir, 'extended_metrics.csv'))
+NameError: name 'save_metrics_table' is not defined
