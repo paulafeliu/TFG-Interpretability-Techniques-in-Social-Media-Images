@@ -1,3 +1,8 @@
+"""
+guided backpropagation.py 
+
+"""
+
 import os
 import cv2
 import numpy as np
@@ -104,7 +109,6 @@ def apply_guided_gradcam(
 
         for b, name in enumerate(names):
             if saved >= num_images:
-                print(f"Saved {saved} guided Grad-CAMs → done.")
                 return
 
             inp = imgs[b].unsqueeze(0)        # 1×C×H×W
@@ -131,7 +135,8 @@ def apply_guided_gradcam(
 
             # 4) Overlay
             heat = np.uint8(255 * guided_cam)
-            heatc = cv2.applyColorMap(heat, cv2.COLORMAP_JET)[..., ::-1]
+            heatc = cv2.applyColorMap(heat, cv2.COLORMAP_JET)
+            #heatc = cv2.applyColorMap(heat, cv2.COLORMAP_JET)[..., ::-1]
             overlay = cv2.addWeighted(heatc, alpha,
                                       np.uint8(255 * orig_img), 1 - alpha, 0)
 
@@ -141,7 +146,6 @@ def apply_guided_gradcam(
             cv2.imwrite(out_path, overlay)
             saved += 1
 
-    print(f"Exhausted data – saved {saved} guided Grad-CAMs.")
 
 
 def apply_guided_gradcam_all(
@@ -167,7 +171,6 @@ def apply_guided_gradcam_all(
     for task in tasks:
         task_out = os.path.join(output_dir, task)
         os.makedirs(task_out, exist_ok=True)
-        print(f"\n→ Generating {num_images} guided Grad-CAMs for '{task}', saving to {task_out}")
         apply_guided_gradcam(
             multi_model=multi_model,
             device=device,

@@ -15,7 +15,7 @@ class GradCAMBackprop:
     Hook the specified conv‐layer of a single‐output model,
     compute Grad‐CAM for a target class.
     """
-    def __init__(self, model: torch.nn.Module, target_layer: str):
+    '''def __init__(self, model: torch.nn.Module, target_layer: str):
         self.model = model
         self.activations = None
         self.gradients   = None
@@ -27,7 +27,32 @@ class GradCAMBackprop:
                 module.register_backward_hook(self._save_gradient)
                 break
         else:
-            raise ValueError(f"Layer '{target_layer}' not found in model.")
+            raise ValueError(f"Layer '{target_layer}' not found in model.")'''
+
+    def __init__(self, model: torch.nn.Module, target_layer: str):
+        """
+        model:        your SingleOutputWrapper around the multi-task net
+        target_layer: e.g. "backbone.backbone.features.8"
+        """
+        self.model = model
+        self.activations = None
+        self.gradients   = None
+
+        # 1) unwrap the wrapper if present
+        module = self.model
+        if hasattr(module, 'model'):
+            module = module.model
+
+        # 2) walk the dotted path, treating numeric segments as Sequential indices
+        for name in target_layer.split('.'):
+            if name.isdigit() and hasattr(module, '__getitem__'):
+                module = module[int(name)]
+            else:
+                module = getattr(module, name)
+
+        # 3) register our hooks on that conv layer
+        module.register_forward_hook(self._save_activation)
+        module.register_backward_hook(self._save_gradient)
 
     def _save_activation(self, module, inp, out):
         self.activations = out.detach()
@@ -104,23 +129,38 @@ def apply_gradcam_backprop(
     gradcam = GradCAMBackprop(wrapper, target_layer=target_layer)
 
     saved = 0
-    for imgs, names, _ in data_loader:
-        imgs = imgs.to(device)
+    for imgs, names, labels in data_loader:
+        #imgs = imgs.to(device)
         # forward through the single‐head wrapper
-        outs  = wrapper(imgs)                       # [B×K]
-        preds = outs.argmax(dim=1).cpu().tolist()   # [B]
+        #outs  = wrapper(imgs)                       # [B×K]
+        #preds = outs.argmax(dim=1).cpu().tolist()   # [B]
+
+        # forward through the single‐head wrapper
+        outs   = wrapper(imgs)                      # [B×K]
+        preds  = outs.argmax(dim=1).cpu()           # Tensor[B]
+
+        # 2) grab the inverse label‐map so we can go int→str
+        raw_ds = data_loader.dataset
+        if isinstance(raw_ds, torch.utils.data.Subset):
+            raw_ds = raw_ds.dataset
+        inv_map = {v:k for k,v in raw_ds.label_maps[task].items()}
 
         for b, name in enumerate(names):
             if saved >= num_images:
-                print(f"Saved {saved} Grad‐CAMs → done.")
                 return
 
-            inp = imgs[b].unsqueeze(0)              # 1×C×H×W
-            cls = preds[b]
+            #inp = imgs[b].unsqueeze(0)              # 1×C×H×W
+            #cls = preds[b]
 
-            # compute heatmap
-            #cam = gradcam.generate(inp, cls)       # H×W in [0..1]
+            inp       = imgs[b].unsqueeze(0)        # 1×C×H×W
+            cls       = preds[b].item()              # predicted int
+            true_cls  = labels[task][b].item()       # ground‐truth int
 
+            # map to the human‐readable strings
+            pred_str = inv_map[cls]
+            true_str = inv_map[true_cls]
+
+            
             # compute heatmap (tamaño pequeño) y reescalar al tamaño de entrada
             cam = gradcam.generate(inp, cls)       # cam: h×w en [0..1]
             # redimensionar al tamaño original de la imagen
@@ -134,12 +174,26 @@ def apply_gradcam_backprop(
             over  = cv2.addWeighted(heatc, alpha,
                                     np.uint8(255 * img_np), 1 - alpha, 0)
 
+
+            # 3) now annotate your overlay
+            text = f"PRED: {pred_str}   TRUE: {true_str}"
+            # white text with a tiny black stroke
+            cv2.putText(
+                over,
+                text,
+                (10, 25),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.7,
+                (255,255,255),
+                thickness=2,
+                lineType=cv2.LINE_AA
+            )
+
+
             out_p = os.path.join(output_dir,
                                  f"{name}_{task}_pred{cls}.png")
             cv2.imwrite(out_p, over)
             saved += 1
-
-    print(f"Exhausted data – saved {saved} Grad‐CAMs.")
 
 
 def apply_gradcam_backprop_all(
@@ -167,7 +221,6 @@ def apply_gradcam_backprop_all(
     for task in tasks:
         task_out = os.path.join(output_dir, task)
         os.makedirs(task_out, exist_ok=True)
-        print(f"\n→ Generating {num_images} Grad‑CAMs for '{task}', saving to:\n   {task_out}")
         apply_gradcam_backprop(
             multi_model=multi_model,
             device=device,

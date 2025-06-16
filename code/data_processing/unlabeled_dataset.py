@@ -4,27 +4,34 @@ unlabeled_dataset.py
 Defines the UnlabeledImageDataset class.
 """
 
-import torch
 import os
 from PIL import Image
-from torchvision import transforms
+from torch.utils.data import Dataset
 
-class UnlabeledImageDataset(torch.utils.data.Dataset):
+class UnlabeledImageDataset(Dataset):
     """
-    Dataset para cargar imágenes sin etiqueta de un directorio dado.
+    Dataset para cargar imágenes de un directorio SIN necesitar un CSV.
+    __getitem__ devuelve: (imagen_transformada, image_name, etiquetas_vacías)
     """
-    def __init__(self, img_dir, transform=None):
+    def __init__(self, img_dir: str, transform=None):
         self.img_dir = img_dir
+        # Listamos una sola vez todas las rutas de imagen válidas:
+        self.img_paths = [
+            os.path.join(img_dir, f)
+            for f in os.listdir(img_dir)
+            if os.path.splitext(f)[1].lower() in ('.jpg', '.jpeg', '.png')
+        ]
         self.transform = transform
-        self.image_files = [f for f in os.listdir(img_dir) if f.lower().endswith(('png', 'jpg', 'jpeg'))]
 
     def __len__(self):
-        return len(self.image_files)
+        return len(self.img_paths)
 
     def __getitem__(self, idx):
-        img_name = self.image_files[idx]
-        img_path = os.path.join(self.img_dir, img_name)
-        image = Image.open(img_path).convert('RGB')
+        path = self.img_paths[idx]
+        img = Image.open(path).convert('RGB')
         if self.transform:
-            image = self.transform(image)
-        return image, img_name
+            img = self.transform(img)
+        # El “image_name” sin extensión, igual que en tu otro dataset:
+        name = os.path.splitext(os.path.basename(path))[0]
+        # Tercero: un dict vacío (no usamos etiquetas para interpretabilidad):
+        return img, name, {}
