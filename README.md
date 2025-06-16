@@ -103,3 +103,17 @@ To run the project:
 - **XRAI**
 
 These techniques are used to generate heatmaps and insights on how each model interprets different tasks, enabling transparent analysis of DRV-related features in social media content.
+
+## Results Summary
+- Best human-aligned explanations: Grad-CAM and LIME
+- Binary tasks (e.g., Biotic/Abiotic) focused on specific entities like faces or animals
+- Landscape tasks relied on broader spatial context
+- EfficientNet-B0 matched ResNet-18 accuracy, but emphasized different visual features like textures
+
+These insights highlight the importance of model choice in interpretability—not just in performance.
+
+## Author
+Paula Feliu
+Bachelor's Project - Artificial Intelligence Degree
+UAB - Universitat Autònoma de Barcelona
+GitHub: @paulafeliu
