@@ -19,8 +19,11 @@ import torch.optim as optim
 import torchvision.models.resnet as resnet
 import torchvision.transforms as transforms
 from sklearn.metrics import confusion_matrix, classification_report
+from torch import device
 from torch.utils.data import DataLoader, random_split, Subset
 from tqdm import tqdm
+
+from code.interpretability.gradcam_all import run_gradcam_all
 
 try:
     from code.settings import CSV_PATH1, IMG_DIR, CSV_PATH2, AGREED_DF_PATH, OUTPUT_DIR, MODEL_CHOICE, CHECKPOINT_PATH, \
@@ -324,7 +327,7 @@ def evaluate_model(model, test_loader, device):
         print(classification_report(all_labels[task], all_preds[task]))
 
 
-def inference(model: MultiTaskModel, device: str, dataset: InferenceImageDataset):
+def inference(model: MultiTaskModel, device_: device, dataset: InferenceImageDataset):
     model.eval()
     feature_names = ["nature", "materiality", "biological", "landscape"]
     all_results = {k: [] for k in feature_names}
@@ -333,7 +336,7 @@ def inference(model: MultiTaskModel, device: str, dataset: InferenceImageDataset
 
     with torch.no_grad():
         for images in tqdm(dataset_loader):
-            images = images.to(device)
+            images = images.to(device_)
 
             outputs = model(images)
 
@@ -532,11 +535,32 @@ if __name__ == '__main__':
     #      train=False,
     #      preload_checkpoint=True)
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = prepare_model(device, CHECKPOINT_PATH)
+    device_ = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model = prepare_model(device_, CHECKPOINT_PATH)
+
+
+
+    # predictions = inference(model, device_, ds)
+    predictions = json.load(Path("data/predictions.json").open())
+    # json.dump(predictions, Path("data/predictions.json").open("w"))
+    # print(predictions)
+
+    inspect_idx = []
+    for idx, (is_nature, prob) in enumerate(predictions["nature"]):
+        if not is_nature and prob < 0.98:
+            inspect_idx.append(idx)
 
     ds = InferenceImageDataset(Path("/home/rsoleyma/projects/big5/labelstudio-tools/data/temp/snippets"),
-                               get_transforms())
-    predictions = inference(model, device, ds)
-    json.dump(predictions, Path("data/predictions.json").open("w"))
-    print(predictions)
+                               get_transforms(), inspect_idx)
+
+
+    run_gradcam_all(
+        multi_model=model,
+        test_dataset=ds,
+        device=device_,
+        output_dir="data/gradcam2",
+        num_images=None,  # o la cantidad de ejemplos que prefieras
+        alpha=1,
+        tasks= {"nature"}
+    )
+

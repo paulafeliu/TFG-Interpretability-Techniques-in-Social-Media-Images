@@ -61,13 +61,16 @@ class MultiTaskImageDataset(Dataset):
 
 class InferenceImageDataset(Dataset):
 
-    def __init__(self, img_dir: Path, transform):
+    def __init__(self, img_dir: Path, transform, filter_idx: list[int] = None):
         self.img_files = list(img_dir.glob('*.*'))
+        if filter_idx:
+            self.img_files = [f for idx, f in enumerate(self.img_files) if idx in filter_idx]
         self.transform = transform
 
     def __len__(self):
         return len(self.img_files)
 
     def __getitem__(self, idx):
-        image = self.transform(Image.open(self.img_files[idx]).convert('RGB'))
-        return image
+        img_path = self.img_files[idx]
+        image = self.transform(Image.open(img_path).convert('RGB'))
+        return image, img_path.stem, None
