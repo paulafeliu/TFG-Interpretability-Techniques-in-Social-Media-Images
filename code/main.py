@@ -3,8 +3,10 @@ main.py
 -------
 Main script to run training, evaluation, and interpretability experiments.
 """
+import json
 import os
 import types
+from pathlib import Path
 from typing import Optional
 
 import cv2
@@ -18,6 +20,7 @@ import torchvision.models.resnet as resnet
 import torchvision.transforms as transforms
 from sklearn.metrics import confusion_matrix, classification_report
 from torch.utils.data import DataLoader, random_split, Subset
+from tqdm import tqdm
 
 try:
     from code.settings import CSV_PATH1, IMG_DIR, CSV_PATH2, AGREED_DF_PATH, OUTPUT_DIR, MODEL_CHOICE, CHECKPOINT_PATH, \
@@ -27,7 +30,7 @@ except ImportError:
     exit(1)
 # Import custom modules
 from data_processing.csv_process import process_csv
-from data_processing.dataset import MultiTaskImageDataset
+from data_processing.dataset import MultiTaskImageDataset, InferenceImageDataset
 # from interpretability.gradcam_all import run_gradcam_all
 from interpretability.lime import run_lime
 from interpretability.shap import SHAPExplainer
@@ -36,6 +39,7 @@ from models.multitask_model import MultiTaskModel
 # from gradcam_backprop import GradCAM, GuidedBackprop
 from utils.denormalize_image import denormalize_image
 from torch._C import device as TorchDevice
+import torch.nn.functional as F
 
 
 def prepare_data():
@@ -320,6 +324,27 @@ def evaluate_model(model, test_loader, device):
         print(classification_report(all_labels[task], all_preds[task]))
 
 
+def inference(model: MultiTaskModel, device: str, dataset: InferenceImageDataset):
+    model.eval()
+    feature_names = ["nature", "materiality", "biological", "landscape"]
+    all_results = {k: [] for k in feature_names}
+
+    dataset_loader = DataLoader(dataset)
+
+    with torch.no_grad():
+        for images in tqdm(dataset_loader):
+            images = images.to(device)
+
+            outputs = model(images)
+
+            for feature_name, output in zip(feature_names, outputs):
+                selected_class = output.argmax(dim=1).cpu().item()
+                probability = F.softmax(output, dim=1).max(dim=1)[0].cpu().item()
+                all_results[feature_name].append((selected_class, probability))
+
+    return all_results
+
+
 def disable_inplace_relu(model):
     """
     Recorre el modelo y desactiva la operación in-place en todas las capas ReLU.
@@ -424,14 +449,15 @@ def main(checkpoint_path: str,
          run_interpret_lime: bool = False,
          run_eval: bool = False, ):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    # Step 1: Data Preparation
-    train_dataset, test_dataset, train_loader, test_loader = prepare_dataset()
 
     # Step 2: Model Construction
     model = prepare_model(device, checkpoint_path if preload_checkpoint else None)
 
     # Step 3: Training
     if train:
+        # Step 1: Data Preparation
+        train_dataset, test_dataset, train_loader, test_loader = prepare_dataset()
+
         try:
             train_model(model, train_loader, device, num_epochs=NUM_EPOCHS)
         except KeyboardInterrupt:
@@ -441,6 +467,7 @@ def main(checkpoint_path: str,
                 torch.save(model.state_dict(), CHECKPOINT_PATH)
             print("Saliendo")
             exit(0)
+
     model_set_checkpoint(model, device, checkpoint_path)
 
     # ... check run_interpret_gradcam
@@ -501,6 +528,15 @@ def main(checkpoint_path: str,
 
 
 if __name__ == '__main__':
-    main(CHECKPOINT_PATH,
-         train=True,
-         preload_checkpoint=False)
+    # main(CHECKPOINT_PATH,
+    #      train=False,
+    #      preload_checkpoint=True)
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model = prepare_model(device, CHECKPOINT_PATH)
+
+    ds = InferenceImageDataset(Path("/home/rsoleyma/projects/big5/labelstudio-tools/data/temp/snippets"),
+                               get_transforms())
+    predictions = inference(model, device, ds)
+    json.dump(predictions, Path("data/predictions.json").open("w"))
+    print(predictions)

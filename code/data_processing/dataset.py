@@ -4,6 +4,8 @@ dataset.py
 Defines the MultiTaskImageDataset class for loading images and labels.
 """
 import os
+from pathlib import Path
+
 import pandas as pd
 from PIL import Image
 from torch.utils.data import Dataset
@@ -42,7 +44,7 @@ class MultiTaskImageDataset(Dataset):
             if os.path.exists(candidate):
                 img_path = candidate
                 break
-        
+
         image = Image.open(img_path).convert('RGB')
         if self.transform:
             image = self.transform(image)
@@ -55,3 +57,17 @@ class MultiTaskImageDataset(Dataset):
             labels[task] = label_value
 
         return image, row['image_name'], labels
+
+
+class InferenceImageDataset(Dataset):
+
+    def __init__(self, img_dir: Path, transform):
+        self.img_files = list(img_dir.glob('*.*'))
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.img_files)
+
+    def __getitem__(self, idx):
+        image = self.transform(Image.open(self.img_files[idx]).convert('RGB'))
+        return image
