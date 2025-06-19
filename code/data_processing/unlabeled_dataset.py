@@ -10,12 +10,11 @@ from torch.utils.data import Dataset
 
 class UnlabeledImageDataset(Dataset):
     """
-    Dataset para cargar imágenes de un directorio SIN necesitar un CSV.
-    __getitem__ devuelve: (imagen_transformada, image_name, etiquetas_vacías)
+    Dataset for loading images from a directory WITHOUT requiring a CSV.
     """
     def __init__(self, img_dir: str, transform=None):
         self.img_dir = img_dir
-        # Listamos una sola vez todas las rutas de imagen válidas:
+        # We list all valid image file paths only once:
         self.img_paths = [
             os.path.join(img_dir, f)
             for f in os.listdir(img_dir)
@@ -31,7 +30,5 @@ class UnlabeledImageDataset(Dataset):
         img = Image.open(path).convert('RGB')
         if self.transform:
             img = self.transform(img)
-        # El “image_name” sin extensión, igual que en tu otro dataset:
         name = os.path.splitext(os.path.basename(path))[0]
-        # Tercero: un dict vacío (no usamos etiquetas para interpretabilidad):
         return img, name, {}

@@ -1,10 +1,5 @@
 """
 shap.py 
--------------
-
-Overlay heatmaps (*_shap.png) where
-    Red / warm areas are pixels that pushed the model’s score higher for that task’s predicted class,
-    Blue / cool (low-intensity in JET) are regions that pushed the score down or had little effect.
 
 """
 
@@ -37,14 +32,6 @@ def apply_shap(
     """
     Compute and save SHAP overlays for a single task.
     """
-    # map task → head index
-    '''task_to_index = {
-        "nature_visual": 0,
-        "nep_materiality_visual": 1,
-        "nep_biological_visual": 2,
-        "landscape-type_visual": 3
-    }'''
-
     idx = TASK_TO_IDX.get(task)
     if idx is None:
         raise ValueError(f"Unknown task '{task}'")
@@ -151,54 +138,4 @@ def apply_shap_all(
             background_size=background_size,
             alpha=alpha
         )
-
-
-
-
-class ShapExplainerRefined:
-    """
-    Refined SHAP explainer using GradientExplainer with local smoothing,
-    morphological filtering y colormaps divergentes.
-    """
-    def __init__(
-        self,
-        model: torch.nn.Module,
-        background: torch.Tensor,
-        device: torch.device,
-        nsamples: int = 100,
-        local_smoothing: float = 0.1
-    ):
-        self.device = device
-        self.wrapper = model.to(device).eval()
-        # GradientExplainer admite local_smoothing for smoothgrad
-        self.explainer = shap.GradientExplainer(
-            self.wrapper,
-            background.to(device),
-            local_smoothing=local_smoothing
-        )
-        self.nsamples = max(1, int(nsamples))
-
-    def explain(self, inp: torch.Tensor) -> np.ndarray:
-        # inp: 1xCxHxW tensor
-        # shap_values: list(len=1) array 1xCxhxw
-        shap_vals = self.explainer.shap_values(inp, nsamples=self.nsamples)[0]
-        # Aggregate: sum over channels -> h x w
-        # Convert to numpy if needed
-        if isinstance(shap_vals, torch.Tensor):
-            arr = shap_vals.detach().cpu().numpy()
-        else:
-            arr = shap_vals
-        # arr shape: (1,C,H,W) or (C,H,W)
-        if arr.ndim == 4:
-            shap_map = arr[0, 0]  # first sample, first channel if single-channel shap_values
-        else:
-            # sum across channels
-            shap_map = np.sum(arr, axis=0)
-        # ensure non-negative contributions
-        shap_map = np.abs(shap_map)
-        shap_map = np.abs(shap_map)
-        # Normalize
-        shap_map = (shap_map - shap_map.min()) / (shap_map.max() - shap_map.min() + 1e-8)
-        return shap_map
-
 

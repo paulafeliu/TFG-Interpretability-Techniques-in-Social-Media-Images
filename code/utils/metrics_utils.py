@@ -60,39 +60,6 @@ def plot_confusion_heatmap(y_true: np.ndarray, y_pred: np.ndarray, labels: list,
     plt.savefig(out_path, dpi=150)
     plt.close()
 
-'''def plot_roc_pr_curves(
-    y_true: np.ndarray,
-    y_score: np.ndarray,
-    n_classes: int,
-    task_name: str,
-    out_dir: str
-):
-    """For binary: n_classes=2; for multi-class we do one-vs-rest."""
-    os.makedirs(out_dir, exist_ok=True)
-    # Binarize labels
-    y_bin = label_binarize(y_true, classes=list(range(n_classes)))
-    for i in range(n_classes):
-        fpr, tpr, _ = roc_curve(y_bin[:,i], y_score[:,i])
-        roc_auc = auc(fpr, tpr)
-        plt.figure()
-        plt.plot(fpr, tpr, label=f'AUC={roc_auc:.2f}')
-        plt.plot([0,1],[0,1],'--')
-        plt.xlabel('FPR'); plt.ylabel('TPR')
-        plt.title(f'ROC curve: {task_name} (class {i})')
-        plt.legend(loc="lower right")
-        plt.savefig(os.path.join(out_dir, f'roc_{task_name}_cls{i}.png'), dpi=150)
-        plt.close()
-
-        precision, recall, _ = precision_recall_curve(y_bin[:,i], y_score[:,i])
-        pr_auc = auc(recall, precision)
-        plt.figure()
-        plt.plot(recall, precision, label=f'AP={pr_auc:.2f}')
-        plt.xlabel('Recall'); plt.ylabel('Precision')
-        plt.title(f'PR curve: {task_name} (class {i})')
-        plt.legend(loc="lower left")
-        plt.savefig(os.path.join(out_dir, f'pr_{task_name}_cls{i}.png'), dpi=150)
-        plt.close()'''
-
 def tsne_feature_visualization(
     feature_extractor: torch.nn.Module,
     data_loader: torch.utils.data.DataLoader,

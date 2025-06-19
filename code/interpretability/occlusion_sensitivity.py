@@ -1,7 +1,8 @@
 
-# -----------------------
-# OcclusionSensitivity.py
-# -----------------------
+'''
+OcclusionSensitivity.py
+
+'''
 
 import os
 import cv2
@@ -105,67 +106,6 @@ class OcclusionSensitivity:
         return heatmap
 
 
-def apply_occlusion(
-    multi_model: torch.nn.Module,
-    device: torch.device,
-    data_loader,
-    output_dir: str,
-    num_images: int = 30,
-    task: str = "nature_visual",
-    patch_size: int = 32,
-    stride: int = 16,
-    baseline: float = 0.0,
-    alpha: float = 0.5
-):
-    """
-    Generate and save occlusion sensitivity overlays.
-    """
-    task_to_idx = {
-        "nature_visual": 0,
-        "nep_materiality_visual": 1,
-        "nep_biological_visual": 2,
-        "landscape-type_visual": 3
-    }
-    idx = task_to_idx.get(task)
-    if idx is None:
-        raise ValueError(f"Unknown task '{task}'")
-
-    wrapper = SingleOutputWrapper(multi_model, output_index=idx).to(device).eval()
-    explainer = OcclusionSensitivity(
-        wrapper,
-        patch_size=patch_size,
-        stride=stride,
-        baseline=baseline,
-        preprocess=lambda img: transforms.Normalize(
-            mean=[0.485,0.456,0.406], std=[0.229,0.224,0.225]
-        )(torch.tensor(img).permute(2,0,1).unsqueeze(0).float().to(device))
-    )
-
-    os.makedirs(output_dir, exist_ok=True)
-    saved = 0
-    for imgs, names, _ in data_loader:
-        imgs = imgs.to(device)
-        preds = wrapper(imgs).argmax(1).cpu().tolist()
-        for img_tensor, name, cls in zip(imgs, names, preds):
-            if saved >= num_images:
-                return
-            heatmap = explainer.generate(img_tensor.unsqueeze(0), cls)
-
-            # Resize via cv2
-            orig_bgr = np.uint8(255 * denormalize_image(img_tensor.cpu()))[..., ::-1]
-            mask = cv2.resize((heatmap*255).astype(np.uint8),
-                              (orig_bgr.shape[1], orig_bgr.shape[0]),
-                              interpolation=cv2.INTER_LINEAR)
-            heatc = cv2.applyColorMap(mask, cv2.COLORMAP_JET)
-            overlay = cv2.addWeighted(heatc, alpha, orig_bgr, 1-alpha, 0)
-
-            cv2.imwrite(
-                os.path.join(output_dir, f"{name}_{task}_occlusion.png"),
-                overlay
-            )
-            saved += 1
-
-
 def apply_occlusion_all(
     multi_model: torch.nn.Module,
     device: torch.device,
@@ -178,12 +118,65 @@ def apply_occlusion_all(
     baseline: float = 0.0,
     alpha: float = 0.5
 ):
+    """
+    Generate & save occlusion overlays for one or more tasks.
+    """
+    task_to_index = {
+        "nature_visual":          0,
+        "nep_materiality_visual": 1,
+        "nep_biological_visual":  2,
+        "landscape-type_visual":  3,
+    }
     if tasks is None:
-        tasks = list(task_to_idx.keys())
+        tasks = list(task_to_index.keys())
+
+    os.makedirs(output_dir, exist_ok=True)
+    saved = {t: 0 for t in tasks}
+
     for task in tasks:
+        idx = task_to_index.get(task)
+        if idx is None:
+            raise ValueError(f"Unknown task '{task}'")
+
         task_dir = os.path.join(output_dir, task)
         os.makedirs(task_dir, exist_ok=True)
-        apply_occlusion(
-            multi_model, device, data_loader, task_dir,
-            num_images, task, patch_size, stride, baseline, alpha
+
+        wrapper = SingleOutputWrapper(multi_model, output_index=idx).to(device).eval()
+        explainer = OcclusionSensitivity(
+            wrapper,
+            patch_size=patch_size,
+            stride=stride,
+            baseline=baseline,
+            preprocess=lambda img: transforms.Normalize(
+                mean=[0.485, 0.456, 0.406],
+                std =[0.229, 0.224, 0.225]
+            )(torch.tensor(img)
+                     .permute(2, 0, 1)
+                     .unsqueeze(0)
+                     .float()
+                     .to(device))
         )
+
+        for imgs, names, _ in data_loader:
+            imgs = imgs.to(device)
+            preds = wrapper(imgs).argmax(dim=1).cpu().tolist()
+
+            for img_tensor, name, cls in zip(imgs, names, preds):
+                if saved[task] >= num_images:
+                    break
+
+                heat = explainer.generate(img_tensor.unsqueeze(0), cls)
+                orig_bgr = np.uint8(255 * denormalize_image(img_tensor.cpu()))[..., ::-1]
+                mask = cv2.resize(
+                    (heat * 255).astype(np.uint8),
+                    (orig_bgr.shape[1], orig_bgr.shape[0]),
+                    interpolation=cv2.INTER_LINEAR
+                )
+                heatc   = cv2.applyColorMap(mask, cv2.COLORMAP_JET)
+                overlay = cv2.addWeighted(heatc, alpha, orig_bgr, 1 - alpha, 0)
+                outpath = os.path.join(task_dir, f"{name}_{task}_occlusion.png")
+                cv2.imwrite(outpath, overlay)
+
+                saved[task] += 1
+            if saved[task] >= num_images:
+                break

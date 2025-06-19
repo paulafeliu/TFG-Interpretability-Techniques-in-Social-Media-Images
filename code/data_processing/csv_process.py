@@ -86,7 +86,7 @@ def process_csv(file_path, img_dir, valid_extensions=['.jpg', '.png', '.jpeg']):
     agreed_df = masked_df[~df_bool.any(axis=1)]
 
 
-    print("El DataFrame tiene", len(agreed_df), "filas.")
+    print("The DataFrame has", len(agreed_df), "rows.")
     
     return agreed_df
 
@@ -173,7 +173,7 @@ def process_csv3(file_path, img_dir, valid_extensions=['.jpg', '.png', '.jpeg'])
     agreed_df = masked_df[~df_bool.any(axis=1)]
 
 
-    print("El DataFrame tiene", len(agreed_df), "filas.")
+    print("The DataFrame has", len(agreed_df), "rows.")
     
     return agreed_df
 

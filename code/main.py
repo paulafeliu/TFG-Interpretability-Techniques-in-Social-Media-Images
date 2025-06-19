@@ -40,7 +40,7 @@ TRAIN = False
 EPOCHS = 100
 CHECKPOINT_PATH = os.path.join(MODELS_PATH, f'trained_{MODEL_CHOICE}_{EPOCHS}epochs.pth')
 
-TARGET_LAYER = 'backbone.backbone.layer4'  # len(backbone.backbone.features) - 1, 'backbone.backbone.features.denseblock4'
+TARGET_LAYER = 'backbone.backbone.layer4'  #target layer for the different models
 MODEL_OUTPUT_DIR = os.path.join(OUTPUT_DIR, MODEL_CHOICE)
 os.makedirs(MODEL_OUTPUT_DIR, exist_ok=True)
 
@@ -56,7 +56,6 @@ def main():
     agree_df = prepare_data(CSV_PATH1, CSV_PATH2, CSV_PATH3, IMG_DIR, AGREED_DF_PATH)
     
     task_names = ['nature_visual', 'nep_materiality_visual', 'nep_biological_visual', 'landscape-type_visual']
-    # Optional: Print unique label values and counts (for debugging)
     for col in task_names:
         print(f"Etiquetas únicas en {col}:")
         print(agree_df[col].unique())
@@ -107,13 +106,11 @@ def main():
     model.eval()
 
 
-    # --------------------- APPLY TECHNIQUES ---------------------------------------------------------------------
     random.seed(42)
     seen_idxs = random.sample(list(range(len(train_dataset))), SEEN_SAMPLE_COUNT)
     seen_subset = Subset(train_dataset, seen_idxs)
     seen_loader = DataLoader(seen_subset, batch_size=1, shuffle=False)
 
-    # --- Prepare 30 unseen samples folder ---
     interp_transform = transforms.Compose([
         transforms.Resize(256), transforms.CenterCrop(224), transforms.ToTensor(),
         transforms.Normalize([0.485,0.456,0.406],[0.229,0.224,0.225])

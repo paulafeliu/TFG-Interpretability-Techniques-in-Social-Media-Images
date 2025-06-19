@@ -34,6 +34,7 @@ def prepare_data(csv1, csv2, csv3, img_dir, agreed_df_path):
     df2 = process_csv(csv2, img_dir)
     df3 = process_csv3(csv3, img_dir)
     agree_df = pd.concat([df1, df2, df3], ignore_index=True)
+    
     # Filter out specific unwanted landscape labels and remove duplicates
     agree_df = agree_df[~agree_df["landscape-type_visual"].isin([
         "forest_and_seminatural_areas,water_bodies", "artificial_surfaces,water_bodies", "artificial_surfaces,forest_and_seminatural_areas"])]
@@ -93,8 +94,6 @@ def enhance_explanation(explanation, threshold=0.3, blur_kernel=(7, 7)):
     enhanced = explanation.copy()
     enhanced[enhanced < threshold] = 0.0
     
-    # Optionally, amplify the high activation regions (contrast stretching)
-    # For example, multiply by a factor to boost the values.
     enhanced = np.clip(enhanced * 1.5, 0, 1)
     
     # Gaussian Blur: smooth the output to create contiguous regions.
@@ -167,7 +166,7 @@ def evaluate_model(model, test_loader, device):
 
 def disable_inplace_relu(model):
     """
-    Recorre el modelo y desactiva la operación in-place en todas las capas ReLU.
+    Iterate through the model and disable the in-place operation on all ReLU layers.
     """
     for module in model.modules():
         if isinstance(module, torch.nn.ReLU):
@@ -202,7 +201,6 @@ def patch_resnet_inplace(model):
 def train_and_record(model, train_loader, val_loader, device, num_epochs):
     history = {
         'train_loss': [], 'val_loss': [],
-        # will dynamically add train_acc_<task>, val_acc_<task>
     }
     # initialize per-epoch lists
     for task in ['nature_visual', 'nep_materiality_visual', 'nep_biological_visual', 'landscape-type_visual']:

@@ -49,7 +49,6 @@ class GuidedBackprop:
         returns: C×H×W guided backprop gradients
         """
         # Ensure gradients on input
-        #input_tensor.requires_grad_()
         input_tensor = input_tensor.clone().detach().requires_grad_(True)
         # Zero existing gradients
         self.model.zero_grad()
@@ -117,7 +116,6 @@ def apply_guided_gradcam(
             # 1) Compute small Grad-CAM
             cam_small = gradcam.generate(inp, cls)  # h×w
             # Resize cam to original image size
-            #orig_img = denormalize_image(imgs[b])   # H×W×3
             orig_img = denormalize_image(imgs[b].detach()) 
             H, W, _ = orig_img.shape
             cam = cv2.resize(cam_small, (W, H))      # H×W
@@ -136,7 +134,6 @@ def apply_guided_gradcam(
             # 4) Overlay
             heat = np.uint8(255 * guided_cam)
             heatc = cv2.applyColorMap(heat, cv2.COLORMAP_JET)
-            #heatc = cv2.applyColorMap(heat, cv2.COLORMAP_JET)[..., ::-1]
             overlay = cv2.addWeighted(heatc, alpha,
                                       np.uint8(255 * orig_img), 1 - alpha, 0)
 
