@@ -32,7 +32,6 @@ IMG_DIR = 'data/training_dataset'
 OUTPUT_DIR = 'TFG-Interpretability-Techniques-in-Social-Media-Images/output'
 MODELS_PATH = 'TFG-Interpretability-Techniques-in-Social-Media-Images/trained_models'
 AGREED_DF_PATH = 'TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/X_labels_agreements_0205.csv'
-SPANISH_DIR = 'data/spanish_dataset'
 UNSEEN_DIR = 'data/interpretability_samples'
 
 MODEL_CHOICE = 'ResNet18'  # Options: ResNet18, EfficientNetB0, DenseNet121, ResNet50
@@ -44,7 +43,7 @@ TARGET_LAYER = 'backbone.backbone.layer4'  #target layer for the different model
 MODEL_OUTPUT_DIR = os.path.join(OUTPUT_DIR, MODEL_CHOICE)
 os.makedirs(MODEL_OUTPUT_DIR, exist_ok=True)
 
-SEEN_SAMPLE_COUNT = 60
+SEEN_SAMPLE_COUNT = 30
 UNSEEN_SAMPLE_COUNT = 30
 
 
