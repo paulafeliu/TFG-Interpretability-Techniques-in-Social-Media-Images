@@ -44,7 +44,7 @@ TARGET_LAYER = 'backbone.backbone.layer4'  #target layer for the different model
 MODEL_OUTPUT_DIR = os.path.join(OUTPUT_DIR, MODEL_CHOICE)
 os.makedirs(MODEL_OUTPUT_DIR, exist_ok=True)
 
-SEEN_SAMPLE_COUNT = 30
+SEEN_SAMPLE_COUNT = 60
 UNSEEN_SAMPLE_COUNT = 30
 
 
@@ -126,9 +126,9 @@ def main():
     # explainer functions
     explainers = {
         'GRADCAM': apply_gradcam_all,
-        'XRAI': apply_xrai_all,
-        'OCCLUSION_SENSITIVITY': apply_occlusion_all,
-        'LIME': run_lime,
+        #'XRAI': apply_xrai_all,
+        #'OCCLUSION_SENSITIVITY': apply_occlusion_all,
+        #'LIME': run_lime,
 
         #'SHAP': apply_shap_all,
         #'GUIDED_GRADCAM': apply_guided_gradcam_all,
