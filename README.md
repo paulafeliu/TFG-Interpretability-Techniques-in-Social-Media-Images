@@ -67,7 +67,12 @@ TFG-Interpretability-Techniques-in-Social-Media-Images/
 │   ├── DenseNet121/
 │   ├── EfficientNetB0/
 │   └── ResNet18/
-│
+|
+├── reports/                        # Folder with the submitted reports
+│   ├── Final_report_30_06.pdf
+│   ├── First_report_23_03.pdf
+│   └── Second_report_18_05.pdf
+|
 ├── trained_models/                # Pre-trained models (skip training from scratch)
 │   ├── trained_DenseNet121_100epochs.pth
 │   ├── trained_EfficientNetB0_100epochs.pth

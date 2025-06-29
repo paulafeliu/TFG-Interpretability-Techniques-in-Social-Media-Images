@@ -25,15 +25,15 @@ from interpretability.xrai import apply_xrai_all
 from interpretability.occlusion_sensitivity import apply_occlusion_all
 
 # Configuration and paths
-CSV_PATH1 = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/39_20250401_0816.csv'
-CSV_PATH2 = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/43_3.csv'
-CSV_PATH3 = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/51.csv'
-IMG_DIR = '/fhome/pfeliu/tfg_feliu/data/training_dataset'
-OUTPUT_DIR = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/output'
-MODELS_PATH = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/trained_models'
-AGREED_DF_PATH = '/fhome/pfeliu/tfg_feliu/TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/X_labels_agreements_0205.csv'
-SPANISH_DIR = '/fhome/pfeliu/tfg_feliu/data/spanish_dataset'
-UNSEEN_DIR = '/fhome/pfeliu/tfg_feliu/data/interpretability_samples'
+CSV_PATH1 = 'TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/39_20250401_0816.csv'
+CSV_PATH2 = 'TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/43_3.csv'
+CSV_PATH3 = 'TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/51.csv'
+IMG_DIR = 'data/training_dataset'
+OUTPUT_DIR = 'TFG-Interpretability-Techniques-in-Social-Media-Images/output'
+MODELS_PATH = 'TFG-Interpretability-Techniques-in-Social-Media-Images/trained_models'
+AGREED_DF_PATH = 'TFG-Interpretability-Techniques-in-Social-Media-Images/data_files/X_labels_agreements_0205.csv'
+SPANISH_DIR = 'data/spanish_dataset'
+UNSEEN_DIR = 'data/interpretability_samples'
 
 MODEL_CHOICE = 'ResNet18'  # Options: ResNet18, EfficientNetB0, DenseNet121, ResNet50
 TRAIN = False
@@ -126,9 +126,9 @@ def main():
     # explainer functions
     explainers = {
         'GRADCAM': apply_gradcam_all,
-        #'XRAI': apply_xrai_all,
-        #'OCCLUSION_SENSITIVITY': apply_occlusion_all,
-        #'LIME': run_lime,
+        'XRAI': apply_xrai_all,
+        'OCCLUSION_SENSITIVITY': apply_occlusion_all,
+        'LIME': run_lime,
 
         #'SHAP': apply_shap_all,
         #'GUIDED_GRADCAM': apply_guided_gradcam_all,
