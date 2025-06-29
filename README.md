@@ -54,7 +54,7 @@ TFG-Interpretability-Techniques-in-Social-Media-Images/
 │   │
 │   ├── main.py                     # Main script to run training, evaluation, and interpretation
 │
-├── data_files/                    # CSV files with images and corresponding labels
+├── data_files/                    # CSV files with images and corresponding labels (image data is on the zip folder submitted)
 │   ├── 39_20250401_0816.csv
 │   ├── 43_3.csv
 │   └── 51.csv
